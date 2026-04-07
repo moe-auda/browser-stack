@@ -5,10 +5,10 @@
  * Desktop (OS X Big Sur, Win 11)  → BrowserStack Automate
  *
  * Usage:
- *   node run-tests.js              — all tests
- *   node run-tests.js --iphone     — iPhone 12 + desktop only
- *   node run-tests.js --galaxy     — Galaxy S10 only (no desktop)
- *   node run-tests.js --desktop    — desktop only
+ *   node run-tests.js              — all 16 tests
+ *   node run-tests.js --iphone     — iPhone 12 only (4 tests)   — Day 1
+ *   node run-tests.js --galaxy     — Galaxy S10 only (4 tests)  — Day 2
+ *   node run-tests.js --desktop    — desktop only (8 tests)     — Day 3
  */
 
 import "dotenv/config";
@@ -98,15 +98,13 @@ async function main() {
 
   // Decide which profiles to run based on flags
   const mobileProfilesToRun = MOBILE_PROFILES.filter((p) => {
-    if (FLAG_ALL || FLAG_IPHONE) return p.label === "iPhone 12";
-    if (FLAG_GALAXY)             return p.label === "Samsung Galaxy S10";
+    if (FLAG_ALL)    return true;
+    if (FLAG_IPHONE) return p.label === "iPhone 12";
+    if (FLAG_GALAXY) return p.label === "Samsung Galaxy S10";
     return false;
-  }).concat(MOBILE_PROFILES.filter((p) => {
-    if (FLAG_ALL)    return p.label === "Samsung Galaxy S10";
-    return false;
-  }));
+  });
 
-  const runDesktop = FLAG_ALL || FLAG_IPHONE || FLAG_DESKTOP;
+  const runDesktop = FLAG_ALL || FLAG_DESKTOP;
 
   const mobileTasks = URLS.flatMap((url) =>
     mobileProfilesToRun.map((profile) => () => runMobileTest({ url, profile }))

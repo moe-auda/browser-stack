@@ -1,0 +1,80 @@
+name: Weekly BrowserStack Tests
+
+# Runs across 3 days to stay within Speed Lab API quota (~6 tests/day)
+# Day 1 Mon — iPhone 12        (4 Speed Lab tests)
+# Day 2 Wed — Samsung Galaxy   (4 Speed Lab tests)
+# Day 3 Fri — Desktop Safari + Chrome  (8 Automate tests)
+#
+# After each run, results are committed and GitHub Pages is updated automatically.
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'   # Monday    14:00 UTC
+    - cron: '0 14 * * 3'   # Wednesday 14:00 UTC
+    - cron: '0 14 * * 5'   # Friday    14:00 UTC
+  workflow_dispatch:
+    inputs:
+      day:
+        description: 'Which day to run'
+        required: true
+        default: 'iphone'
+        type: choice
+        options:
+          - iphone
+          - galaxy
+          - desktop
+          - all
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests — Monday (iPhone 12)
+        if: github.event.schedule == '0 14 * * 1' || (github.event_name == 'workflow_dispatch' && inputs.day == 'iphone')
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        run: node run-tests.js --iphone
+
+      - name: Run tests — Wednesday (Samsung Galaxy S10)
+        if: github.event.schedule == '0 14 * * 3' || (github.event_name == 'workflow_dispatch' && inputs.day == 'galaxy')
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        run: node run-tests.js --galaxy
+
+      - name: Run tests — Friday (Desktop)
+        if: github.event.schedule == '0 14 * * 5' || (github.event_name == 'workflow_dispatch' && inputs.day == 'desktop')
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        run: node run-tests.js --desktop
+
+      - name: Run all tests (manual override)
+        if: github.event_name == 'workflow_dispatch' && inputs.day == 'all'
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        run: node run-tests.js
+
+      - name: Commit and push results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add results/
+          git diff --staged --quiet || git commit -m "chore: test results $(date +%Y-%m-%d)"
+          git push
