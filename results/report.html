@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BrowserStack Performance Report — PressReader</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0; padding: 0; background: #f0f2f5; color: #1a1a2e; font-size: 14px;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+      color: #fff; padding: 2rem 2.5rem;
+    }
+    header h1 { margin: 0 0 0.2rem; font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; }
+    header .subtitle { margin: 0 0 1.25rem; opacity: 0.6; font-size: 0.875rem; }
+    .meta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .meta-item {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px; padding: 0.6rem 1.1rem; min-width: 100px;
+    }
+    .meta-item .val { font-size: 1.35rem; font-weight: 700; line-height: 1; }
+    .meta-item .lbl { font-size: 0.7rem; opacity: 0.6; margin-top: 0.15rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* ── Layout ── */
+    main { max-width: 1440px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .section-title {
+      font-size: 1.1rem; font-weight: 700; color: #1a1a2e;
+      margin: 0 0 0.3rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .section-title::after {
+      content: ''; flex: 1; height: 2px;
+      background: linear-gradient(to right, #e0e0e0, transparent); border-radius: 2px;
+    }
+    .section-desc { font-size: 0.78rem; color: #888; margin: 0 0 1.25rem; }
+
+    /* ── Score blocks grid ── */
+    .scores-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
+      gap: 1.25rem; margin-bottom: 2.5rem;
+    }
+    .score-block {
+      background: #fff; border-radius: 14px; padding: 1.25rem 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .score-block-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 1rem; gap: 0.75rem;
+    }
+    .score-block-header h3 { margin: 0 0 0.2rem; font-size: 0.95rem; font-weight: 700; }
+
+    /* Average score badge in card header */
+    .avg-score-wrap { text-align: center; flex-shrink: 0; }
+    .avg-score {
+      width: 58px; height: 58px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; font-weight: 900; color: #fff; margin: 0 auto;
+    }
+    .avg-score-lbl { font-size: 0.62rem; color: #aaa; margin-top: 0.25rem;
+                     text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* Per-row score badge in table */
+    .perf-score {
+      width: 40px; height: 40px; border-radius: 50%; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.88rem; font-weight: 800; color: #fff;
+    }
+    /* Circle backgrounds — scoped so they don't bleed onto metric cells */
+    .perf-score.score-good, .avg-score.score-good { background: #1a9e4f; color: #fff !important; }
+    .perf-score.score-warn, .avg-score.score-warn { background: #d97706; color: #fff !important; }
+    .perf-score.score-bad,  .avg-score.score-bad  { background: #dc2626; color: #fff !important; }
+    .perf-score.score-na,   .avg-score.score-na   { background: #ddd; color: #999 !important; font-size: 0.75rem !important; font-weight: 600 !important; }
+
+    /* URL pill */
+    .url-pill {
+      font-size: 0.7rem; color: #888; background: #f5f5f5; border-radius: 20px;
+      padding: 0.15rem 0.6rem; white-space: nowrap; overflow: hidden;
+      text-overflow: ellipsis; max-width: 340px; display: inline-block;
+    }
+
+    /* ── Table ── */
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.79rem; table-layout: fixed; }
+
+    .group-row th { padding: 5px 6px; font-size: 0.68rem; font-weight: 700;
+                    text-transform: uppercase; letter-spacing: 0.06em; border-bottom: none; }
+    .group-cwv  { background: #eef6ff; color: #1a6bc4; text-align: center; }
+    .group-load { background: #f3f0ff; color: #6b3fa0; text-align: center; }
+
+    .metric-row th {
+      padding: 5px 6px; color: #555; font-weight: 600;
+      border-bottom: 2px solid #f0f0f0; text-align: right;
+      font-size: 0.74rem; white-space: nowrap;
+    }
+    .metric-row th[title] { cursor: help; text-decoration: underline dotted #bbb; }
+
+    td { padding: 6px 6px; border-bottom: 1px solid #f5f5f5; text-align: right; white-space: nowrap; }
+    tr:last-child td { border-bottom: none; }
+    .col-profile { text-align: left !important; width: 20%; white-space: normal;
+                   word-break: break-word; line-height: 1.4; color: #333; }
+    .col-score-head { text-align: center !important; width: 9%; font-size: 0.68rem;
+                      font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+                      color: #555; padding: 5px 6px; border-bottom: 2px solid #f0f0f0; }
+    .score-cell { text-align: center !important; padding: 5px 4px !important; }
+
+    /* Secondary metric text colours (td cells only — no background) */
+    .score-good { color: #1a9e4f; font-weight: 600; }
+    .score-warn { color: #d97706; font-weight: 600; }
+    .score-bad  { color: #dc2626; font-weight: 600; }
+    .score-na   { color: #ccc; }
+
+    /* Make secondary metric text smaller / lighter to de-emphasise */
+    td:not(.score-cell):not(.col-profile) { font-size: 0.75rem; opacity: 0.85; }
+
+    .unit { font-size: 0.66rem; color: #bbb; margin-left: 1px; }
+    .na   { color: #ccc; }
+
+    .row-error td { color: #bbb; font-style: italic; }
+    .error-cell { text-align: left !important; font-size: 0.74rem; white-space: normal; }
+
+    /* ── Threshold legend ── */
+    .legend-block {
+      background: #fff; border-radius: 14px; padding: 1.1rem 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 2.5rem;
+    }
+    .legend-block table { font-size: 0.78rem; }
+    .legend-block th {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; color: #999; padding: 4px 10px;
+      border-bottom: 2px solid #f0f0f0; text-align: left;
+    }
+    .legend-block td { padding: 5px 10px; text-align: left; font-size: 0.78rem; opacity: 1; }
+    .legend-name { color: #999; font-weight: 400; margin-left: 0.3rem; }
+
+    /* ── Chart sections ── */
+    .url-section {
+      background: #fff; border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .url-section-header {
+      display: flex; align-items: baseline; gap: 0.75rem;
+      margin-bottom: 1.25rem; flex-wrap: wrap;
+    }
+    .url-section-header h2 { margin: 0; font-size: 1rem; font-weight: 700; }
+    .charts-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.25rem;
+    }
+    .chart-wrap h4 {
+      font-size: 0.72rem; margin: 0 0 0.4rem; color: #777;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    .chart-wrap canvas { max-height: 220px; }
+    .chart-full { margin-top: 0; }
+    .chart-full canvas { max-height: 240px; }
+
+    /* ── Footer ── */
+    footer { text-align: center; color: #bbb; font-size: 0.75rem; padding: 1.5rem 2rem 2rem; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) { .scores-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 700px)  { .charts-row { grid-template-columns: 1fr; } .meta { gap: 0.6rem; } header { padding: 1.5rem; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>BrowserStack Performance Report</h1>
+  <p class="subtitle">PressReader — Weekly Speed Tests</p>
+  <div class="meta">
+    <div class="meta-item"><div class="val">5</div><div class="lbl">Weeks of Data</div></div>
+    <div class="meta-item"><div class="val">Week 5</div><div class="lbl">Latest Week</div></div>
+    <div class="meta-item"><div class="val">Apr 6 – Apr 12</div><div class="lbl">Date Range</div></div>
+    <div class="meta-item"><div class="val">4</div><div class="lbl">URLs Tested</div></div>
+    <div class="meta-item"><div class="val">4</div><div class="lbl">Platforms</div></div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <p class="section-title">Current Scores <span style="font-size:0.8rem;font-weight:400;color:#888">— Week 5 (Apr 6 – Apr 12)</span></p>
+    <p class="section-desc">Performance Score (0–100) is the primary metric — higher is better. Secondary metrics are shown for reference. Hover column headers for full names.</p>
+    <div class="scores-grid">
+    <div class="score-block">
+      <div class="score-block-header">
+        <div>
+          <h3>PressReader Home</h3>
+          <span class="url-pill">www.pressreader.com</span>
+        </div>
+        <div class="avg-score-wrap">
+          <div class="avg-score score-good" title="Average score across all platforms">87</div>
+          <div class="avg-score-lbl">avg score</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          
+    <thead>
+      <tr class="group-row">
+        <th rowspan="2" class="col-profile">Profile</th>
+        <th rowspan="2" class="col-score-head">Score</th>
+        <th colspan="3" class="group-cwv">Core Web Vitals</th>
+        <th colspan="3" class="group-load">Page Timing</th>
+      </tr>
+      <tr class="metric-row">
+        <th title="First Contentful Paint">FCP</th><th title="Largest Contentful Paint">LCP</th><th title="Total Blocking Time">TBT</th>
+        <th title="Time to Interactive">TTI</th><th title="Page Load Time">Load</th><th title="Speed Index">SI</th>
+      </tr>
+    </thead>
+          <tbody>
+            <tr>
+                <td class="col-profile">iPhone 12</td>
+                <td class="score-cell"><div class="perf-score score-na">—</div></td>
+                <td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td>
+              </tr>
+<tr>
+                <td class="col-profile">Samsung Galaxy S10</td>
+                <td class="score-cell"><div class="perf-score score-na">—</div></td>
+                <td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td>
+              </tr>
+<tr>
+                <td class="col-profile">OS X Big Sur — Safari</td>
+                <td class="score-cell"><div class="perf-score score-good">86</div></td>
+                <td class="score-warn">2,315<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-good">1,482<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td>
+              </tr>
+<tr>
+                <td class="col-profile">Windows 11 — Chrome</td>
+                <td class="score-cell"><div class="perf-score score-good">87</div></td>
+                <td class="score-warn">2,168<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-good">1,800<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="score-block">
+      <div class="score-block-header">
+        <div>
+          <h3>USA Today Edition</h3>
+          <span class="url-pill">www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251</span>
+        </div>
+        <div class="avg-score-wrap">
+          <div class="avg-score score-good" title="Average score across all platforms">89</div>
+          <div class="avg-score-lbl">avg score</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          
+    <thead>
+      <tr class="group-row">
+        <th rowspan="2" class="col-profile">Profile</th>
+        <th rowspan="2" class="col-score-head">Score</th>
+        <th colspan="3" class="group-cwv">Core Web Vitals</th>
+        <th colspan="3" class="group-load">Page Timing</th>
+      </tr>
+      <tr class="metric-row">
+        <th title="First Contentful Paint">FCP</th><th title="Largest Contentful Paint">LCP</th><th title="Total Blocking Time">TBT</th>
+        <th title="Time to Interactive">TTI</th><th title="Page Load Time">Load</th><th title="Speed Index">SI</th>
+      </tr>
+    </thead>
+          <tbody>
+            <tr>
+                <td class="col-profile">iPhone 12</td>
+                <td class="score-cell"><div class="perf-score score-na">—</div></td>
+                <td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td>
+              </tr>
+<tr>
+                <td class="col-profile">Samsung Galaxy S10</td>
+                <td class="score-cell"><div class="perf-score score-na">—</div></td>
+                <td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td>
+              </tr>
+<tr>
+                <td class="col-profile">OS X Big Sur — Safari</td>
+                <td class="score-cell"><div class="perf-score score-good">85</div></td>
+                <td class="score-warn">2,390<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-good">1,668<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td>
+              </tr>
+<tr>
+                <td class="col-profile">Windows 11 — Chrome</td>
+                <td class="score-cell"><div class="perf-score score-good">92</div></td>
+                <td class="score-good">1,556<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-good">1,373<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="score-block">
+      <div class="score-block-header">
+        <div>
+          <h3>Catalog</h3>
+          <span class="url-pill">www.pressreader.com/catalog</span>
+        </div>
+        <div class="avg-score-wrap">
+          <div class="avg-score score-bad" title="Average score across all platforms">38</div>
+          <div class="avg-score-lbl">avg score</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          
+    <thead>
+      <tr class="group-row">
+        <th rowspan="2" class="col-profile">Profile</th>
+        <th rowspan="2" class="col-score-head">Score</th>
+        <th colspan="3" class="group-cwv">Core Web Vitals</th>
+        <th colspan="3" class="group-load">Page Timing</th>
+      </tr>
+      <tr class="metric-row">
+        <th title="First Contentful Paint">FCP</th><th title="Largest Contentful Paint">LCP</th><th title="Total Blocking Time">TBT</th>
+        <th title="Time to Interactive">TTI</th><th title="Page Load Time">Load</th><th title="Speed Index">SI</th>
+      </tr>
+    </thead>
+          <tbody>
+            <tr>
+                <td class="col-profile">iPhone 12</td>
+                <td class="score-cell"><div class="perf-score score-na">—</div></td>
+                <td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td>
+              </tr>
+<tr>
+                <td class="col-profile">Samsung Galaxy S10</td>
+                <td class="score-cell"><div class="perf-score score-bad">24</div></td>
+                <td class="score-good">1,610<span class="unit">ms</span></td><td class="score-bad">8,260<span class="unit">ms</span></td><td class="score-good">6<span class="unit">ms</span></td><td class="score-bad">10,040<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td><td class="score-bad">13,510<span class="unit">ms</span></td>
+              </tr>
+<tr>
+                <td class="col-profile">OS X Big Sur — Safari</td>
+                <td class="score-cell"><div class="perf-score score-warn">50</div></td>
+                <td class="score-bad">4,262<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-warn">3,913<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td>
+              </tr>
+<tr>
+                <td class="col-profile">Windows 11 — Chrome</td>
+                <td class="score-cell"><div class="perf-score score-bad">41</div></td>
+                <td class="score-warn">2,984<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-bad">5,817<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="score-block">
+      <div class="score-block-header">
+        <div>
+          <h3>Wall Street Journal</h3>
+          <span class="url-pill">www.pressreader.com/newspapers/n/the-wall-street-journal</span>
+        </div>
+        <div class="avg-score-wrap">
+          <div class="avg-score score-warn" title="Average score across all platforms">59</div>
+          <div class="avg-score-lbl">avg score</div>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          
+    <thead>
+      <tr class="group-row">
+        <th rowspan="2" class="col-profile">Profile</th>
+        <th rowspan="2" class="col-score-head">Score</th>
+        <th colspan="3" class="group-cwv">Core Web Vitals</th>
+        <th colspan="3" class="group-load">Page Timing</th>
+      </tr>
+      <tr class="metric-row">
+        <th title="First Contentful Paint">FCP</th><th title="Largest Contentful Paint">LCP</th><th title="Total Blocking Time">TBT</th>
+        <th title="Time to Interactive">TTI</th><th title="Page Load Time">Load</th><th title="Speed Index">SI</th>
+      </tr>
+    </thead>
+          <tbody>
+            <tr>
+                <td class="col-profile">iPhone 12</td>
+                <td class="score-cell"><div class="perf-score score-bad">26</div></td>
+                <td class="score-bad">5,920<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-bad">5,900<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td>
+              </tr>
+<tr>
+                <td class="col-profile">Samsung Galaxy S10</td>
+                <td class="score-cell"><div class="perf-score score-bad">31</div></td>
+                <td class="score-warn">1,810<span class="unit">ms</span></td><td class="score-bad">7,760<span class="unit">ms</span></td><td class="score-good">5<span class="unit">ms</span></td><td class="score-bad">8,140<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td><td class="score-bad">9,180<span class="unit">ms</span></td>
+              </tr>
+<tr>
+                <td class="col-profile">OS X Big Sur — Safari</td>
+                <td class="score-cell"><div class="perf-score score-good">85</div></td>
+                <td class="score-warn">2,341<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-good">1,648<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td>
+              </tr>
+<tr>
+                <td class="col-profile">Windows 11 — Chrome</td>
+                <td class="score-cell"><div class="perf-score score-good">92</div></td>
+                <td class="score-good">1,704<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-na"><span class="na">—</span></td><td class="score-good">1,452<span class="unit">ms</span></td><td class="score-na"><span class="na">—</span></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div></div>
+  </section>
+
+  <section>
+    <p class="section-title">Metric Thresholds</p>
+    <div class="legend-block">
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="score-good">Good</th>
+            <th class="score-warn">Needs Work</th>
+            <th class="score-bad">Poor</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+      <td><strong>FCP</strong> <span class="legend-name">First Contentful Paint</span></td>
+      <td class="score-good">≤ 1,800 ms</td>
+      <td class="score-warn">≤ 3,000 ms</td>
+      <td class="score-bad">&gt; 3,000 ms</td>
+    </tr><tr>
+      <td><strong>LCP</strong> <span class="legend-name">Largest Contentful Paint</span></td>
+      <td class="score-good">≤ 2,500 ms</td>
+      <td class="score-warn">≤ 4,000 ms</td>
+      <td class="score-bad">&gt; 4,000 ms</td>
+    </tr><tr>
+      <td><strong>TBT</strong> <span class="legend-name">Total Blocking Time</span></td>
+      <td class="score-good">≤ 200 ms</td>
+      <td class="score-warn">≤ 600 ms</td>
+      <td class="score-bad">&gt; 600 ms</td>
+    </tr><tr>
+      <td><strong>TTI</strong> <span class="legend-name">Time to Interactive</span></td>
+      <td class="score-good">≤ 3,800 ms</td>
+      <td class="score-warn">≤ 7,300 ms</td>
+      <td class="score-bad">&gt; 7,300 ms</td>
+    </tr><tr>
+      <td><strong>Load</strong> <span class="legend-name">Page Load Time</span></td>
+      <td class="score-good">≤ 2,000 ms</td>
+      <td class="score-warn">≤ 5,000 ms</td>
+      <td class="score-bad">&gt; 5,000 ms</td>
+    </tr><tr>
+      <td><strong>SI</strong> <span class="legend-name">Speed Index</span></td>
+      <td class="score-good">≤ 3,400 ms</td>
+      <td class="score-warn">≤ 5,800 ms</td>
+      <td class="score-bad">&gt; 5,800 ms</td>
+    </tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-title">Timeline — Week by Week</p>
+    <p class="section-desc">Performance Score trend is shown first. Secondary metric trends follow. X-axis labels are calendar weeks.</p>
+    
+      <section class="url-section">
+        <div class="url-section-header">
+          <h2>PressReader Home</h2>
+          <span class="url-pill">www.pressreader.com</span>
+        </div>
+        <div class="chart-wrap chart-full">
+          <h4>Performance Score (0–100)</h4>
+          <canvas id="chart_0"></canvas>
+        </div>
+        <div class="charts-row"><div class="chart-wrap"><h4>First Contentful Paint (ms)</h4><canvas id="chart_1"></canvas></div><div class="chart-wrap"><h4>Largest Contentful Paint (ms)</h4><canvas id="chart_2"></canvas></div></div>
+<div class="charts-row"><div class="chart-wrap"><h4>Total Blocking Time (ms)</h4><canvas id="chart_3"></canvas></div><div class="chart-wrap"><h4>Time to Interactive (ms)</h4><canvas id="chart_4"></canvas></div></div>
+<div class="charts-row"><div class="chart-wrap"><h4>Page Load Time (ms)</h4><canvas id="chart_5"></canvas></div><div class="chart-wrap"><h4>Speed Index (ms)</h4><canvas id="chart_6"></canvas></div></div>
+      </section>
+
+      <section class="url-section">
+        <div class="url-section-header">
+          <h2>USA Today Edition</h2>
+          <span class="url-pill">www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251</span>
+        </div>
+        <div class="chart-wrap chart-full">
+          <h4>Performance Score (0–100)</h4>
+          <canvas id="chart_7"></canvas>
+        </div>
+        <div class="charts-row"><div class="chart-wrap"><h4>First Contentful Paint (ms)</h4><canvas id="chart_8"></canvas></div><div class="chart-wrap"><h4>Largest Contentful Paint (ms)</h4><canvas id="chart_9"></canvas></div></div>
+<div class="charts-row"><div class="chart-wrap"><h4>Total Blocking Time (ms)</h4><canvas id="chart_10"></canvas></div><div class="chart-wrap"><h4>Time to Interactive (ms)</h4><canvas id="chart_11"></canvas></div></div>
+<div class="charts-row"><div class="chart-wrap"><h4>Page Load Time (ms)</h4><canvas id="chart_12"></canvas></div><div class="chart-wrap"><h4>Speed Index (ms)</h4><canvas id="chart_13"></canvas></div></div>
+      </section>
+
+      <section class="url-section">
+        <div class="url-section-header">
+          <h2>Catalog</h2>
+          <span class="url-pill">www.pressreader.com/catalog</span>
+        </div>
+        <div class="chart-wrap chart-full">
+          <h4>Performance Score (0–100)</h4>
+          <canvas id="chart_14"></canvas>
+        </div>
+        <div class="charts-row"><div class="chart-wrap"><h4>First Contentful Paint (ms)</h4><canvas id="chart_15"></canvas></div><div class="chart-wrap"><h4>Largest Contentful Paint (ms)</h4><canvas id="chart_16"></canvas></div></div>
+<div class="charts-row"><div class="chart-wrap"><h4>Total Blocking Time (ms)</h4><canvas id="chart_17"></canvas></div><div class="chart-wrap"><h4>Time to Interactive (ms)</h4><canvas id="chart_18"></canvas></div></div>
+<div class="charts-row"><div class="chart-wrap"><h4>Page Load Time (ms)</h4><canvas id="chart_19"></canvas></div><div class="chart-wrap"><h4>Speed Index (ms)</h4><canvas id="chart_20"></canvas></div></div>
+      </section>
+
+      <section class="url-section">
+        <div class="url-section-header">
+          <h2>Wall Street Journal</h2>
+          <span class="url-pill">www.pressreader.com/newspapers/n/the-wall-street-journal</span>
+        </div>
+        <div class="chart-wrap chart-full">
+          <h4>Performance Score (0–100)</h4>
+          <canvas id="chart_21"></canvas>
+        </div>
+        <div class="charts-row"><div class="chart-wrap"><h4>First Contentful Paint (ms)</h4><canvas id="chart_22"></canvas></div><div class="chart-wrap"><h4>Largest Contentful Paint (ms)</h4><canvas id="chart_23"></canvas></div></div>
+<div class="charts-row"><div class="chart-wrap"><h4>Total Blocking Time (ms)</h4><canvas id="chart_24"></canvas></div><div class="chart-wrap"><h4>Time to Interactive (ms)</h4><canvas id="chart_25"></canvas></div></div>
+<div class="charts-row"><div class="chart-wrap"><h4>Page Load Time (ms)</h4><canvas id="chart_26"></canvas></div><div class="chart-wrap"><h4>Speed Index (ms)</h4><canvas id="chart_27"></canvas></div></div>
+      </section>
+  </section>
+</main>
+
+<footer>Generated 2026-04-07T18:54:22.935Z &nbsp;·&nbsp; BrowserStack Speed Lab + Automate &nbsp;·&nbsp; Data in results/all-results.csv</footer>
+
+<script>
+
+    new Chart(document.getElementById('chart_0'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[20,46,16,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[27,64,60,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[74,91,92,86,86],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[37,null,null,95,87],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString()
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Performance Score (0–100)' },
+            beginAtZero: true,
+            min: 0, max: 100,
+            ticks: { callback: v => v.toLocaleString(), font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_1'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[6500,5990,4440,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[1110,1600,1610,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[1230,1800,1620,1691,2315],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[1240,null,null,1024,2168],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'First Contentful Paint (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_2'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[8700,2730,2670,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[6990,null,null,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Largest Contentful Paint (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_3'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[6,5,4,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[4,null,null,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Total Blocking Time (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_4'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[9300,9300,7010,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[7790,null,null,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Time to Interactive (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_5'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[6480,3900,8260,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,null,null,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[1230,1780,1500,2438,1482],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,null,872,1800],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Page Load Time (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_6'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[10330,6260,7940,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[5580,2560,2760,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[7740,null,null,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Speed Index (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_7'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[22,27,50,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[23,23,27,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[66,73,null,90,85],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[23,74,72,83,92],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString()
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Performance Score (0–100)' },
+            beginAtZero: true,
+            min: 0, max: 100,
+            ticks: { callback: v => v.toLocaleString(), font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_8'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[6330,5750,4330,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[1300,1630,1690,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[2080,1520,null,1934,2390],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[1190,1390,1420,2412,1556],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'First Contentful Paint (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_9'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[8740,8710,6940,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[8030,3560,3240,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Largest Contentful Paint (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_10'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[5,5,4,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[6,3,4,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Total Blocking Time (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_11'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[10310,9650,8280,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[12210,5860,7410,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Time to Interactive (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_12'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[6310,5720,3860,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,null,null,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[2070,1380,null,1570,1668],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,null,1905,1373],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Page Load Time (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_13'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[16540,15260,13870,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[6080,5580,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[13460,4260,4530,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Speed Index (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_14'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,3,19,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,24,24,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,80,83,91,50],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,21,23,80,41],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString()
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Performance Score (0–100)' },
+            beginAtZero: true,
+            min: 0, max: 100,
+            ticks: { callback: v => v.toLocaleString(), font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_15'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,6020,6670,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,1630,1610,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,2060,1720,1414,4262],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,1400,1290,2488,2984],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'First Contentful Paint (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_16'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,8510,8260,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,10790,8520,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Largest Contentful Paint (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_17'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,5,6,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,9,6,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Total Blocking Time (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_18'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,9720,10040,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,13800,11520,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Time to Interactive (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_19'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,17390,6650,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,null,null,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,2060,1610,1753,3913],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,null,2336,5817],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Page Load Time (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_20'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,12540,13510,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,4420,4280,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,12470,13870,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Speed Index (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_21'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,26,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,null,31,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,86,83,85],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,20,93,92],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString()
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Performance Score (0–100)' },
+            beginAtZero: true,
+            min: 0, max: 100,
+            ticks: { callback: v => v.toLocaleString(), font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_22'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,5920,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,null,1810,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,1920,2046,2341],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,1430,1360,1704],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'First Contentful Paint (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_23'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,null,7760,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,12030,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Largest Contentful Paint (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_24'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,null,5,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,9,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Total Blocking Time (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_25'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,null,8140,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,14760,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Time to Interactive (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_26'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,5900,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,null,null,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,1670,2555,1648],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,null,1188,1452],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Page Load Time (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+
+    new Chart(document.getElementById('chart_27'), {
+      type: 'line',
+      data: {"labels":["Week 1","Week 2","Week 3","Week 4","Week 5"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,null,9180,null,null],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,3930,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,14440,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          tooltip: {
+            callbacks: {
+              label: ctx => ctx.parsed.y != null
+                ? ctx.dataset.label + ': ' + ctx.parsed.y.toLocaleString() + ' ms'
+                : ctx.dataset.label + ': n/a'
+            }
+          }
+        },
+        scales: {
+          x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
+          y: {
+            title: { display: true, text: 'Speed Index (ms)' },
+            beginAtZero: false,
+            
+            ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
+          }
+        }
+      }
+    });
+</script>
+</body>
+</html>

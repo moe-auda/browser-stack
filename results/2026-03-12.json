@@ -1,0 +1,222 @@
+[
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "Samsung Galaxy S10",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1600,
+      "largestContentfulPaint": 2730,
+      "timeToInteractive": 9300,
+      "totalBlockingTime": 5,
+      "speedIndex": 6260,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 3900,
+      "firstContentfulPaint": 5990,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "OS X Big Sur — Safari",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 1780,
+      "firstContentfulPaint": 1800,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": 2560,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Windows 11 — Chrome",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1390,
+      "largestContentfulPaint": 3560,
+      "timeToInteractive": 5860,
+      "totalBlockingTime": 3,
+      "speedIndex": 4260,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Samsung Galaxy S10",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1630,
+      "largestContentfulPaint": 8710,
+      "timeToInteractive": 9650,
+      "totalBlockingTime": 5,
+      "speedIndex": 15260,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 5720,
+      "firstContentfulPaint": 5750,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "OS X Big Sur — Safari",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 1380,
+      "firstContentfulPaint": 1520,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": 5580,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 17390,
+      "firstContentfulPaint": 6020,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "Samsung Galaxy S10",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1630,
+      "largestContentfulPaint": 8510,
+      "timeToInteractive": 9720,
+      "totalBlockingTime": 5,
+      "speedIndex": 12540,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "OS X Big Sur — Safari",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 2060,
+      "firstContentfulPaint": 2060,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": 4420,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "Windows 11 — Chrome",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1400,
+      "largestContentfulPaint": 10790,
+      "timeToInteractive": 13800,
+      "totalBlockingTime": 9,
+      "speedIndex": 12470,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  }
+]

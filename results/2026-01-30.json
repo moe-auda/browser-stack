@@ -1,0 +1,162 @@
+[
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "Samsung Galaxy S10",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1110,
+      "largestContentfulPaint": 8700,
+      "timeToInteractive": 9300,
+      "totalBlockingTime": 6,
+      "speedIndex": 10330,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 6480,
+      "firstContentfulPaint": 6500,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "OS X Big Sur — Safari",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 1230,
+      "firstContentfulPaint": 1230,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": 5580,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "Windows 11 — Chrome",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1240,
+      "largestContentfulPaint": 6990,
+      "timeToInteractive": 7790,
+      "totalBlockingTime": 4,
+      "speedIndex": 7740,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Samsung Galaxy S10",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1300,
+      "largestContentfulPaint": 8740,
+      "timeToInteractive": 10310,
+      "totalBlockingTime": 5,
+      "speedIndex": 16540,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 6310,
+      "firstContentfulPaint": 6330,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "OS X Big Sur — Safari",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 2070,
+      "firstContentfulPaint": 2080,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": 6080,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Windows 11 — Chrome",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1190,
+      "largestContentfulPaint": 8030,
+      "timeToInteractive": 12210,
+      "totalBlockingTime": 6,
+      "speedIndex": 13460,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  }
+]

@@ -1,0 +1,97 @@
+date,url,profile,pageLoadTime_ms,firstContentfulPaint_ms,speedIndex_ms,largestContentfulPaint_ms,timeToFirstByte_ms,totalRequests,totalTransferSize_bytes,reportId,error
+2026-04-01,"https://www.pressreader.com","iPhone 12",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com","Samsung Galaxy S10",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com","OS X Big Sur — Safari",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com","Windows 11 — Chrome",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","iPhone 12",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Samsung Galaxy S10",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","OS X Big Sur — Safari",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Windows 11 — Chrome",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/catalog","iPhone 12",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/catalog","Samsung Galaxy S10",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/catalog","OS X Big Sur — Safari",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/catalog","Windows 11 — Chrome",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","iPhone 12",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Samsung Galaxy S10",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","OS X Big Sur — Safari",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Windows 11 — Chrome",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com","iPhone 12",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICES","error_message":"Not a supported device. Use a valid device value from the '/meta/devices' api."}"
+2026-04-01,"https://www.pressreader.com","Samsung Galaxy S10",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICES","error_message":"Not a supported device. Use a valid device value from the '/meta/devices' api."}"
+2026-04-01,"https://www.pressreader.com","OS X Big Sur — Safari",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com","Windows 11 — Chrome",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","iPhone 12",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICES","error_message":"Not a supported device. Use a valid device value from the '/meta/devices' api."}"
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Samsung Galaxy S10",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICES","error_message":"Not a supported device. Use a valid device value from the '/meta/devices' api."}"
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","OS X Big Sur — Safari",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Windows 11 — Chrome",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/catalog","iPhone 12",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICES","error_message":"Not a supported device. Use a valid device value from the '/meta/devices' api."}"
+2026-04-01,"https://www.pressreader.com/catalog","Samsung Galaxy S10",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICES","error_message":"Not a supported device. Use a valid device value from the '/meta/devices' api."}"
+2026-04-01,"https://www.pressreader.com/catalog","OS X Big Sur — Safari",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/catalog","Windows 11 — Chrome",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","iPhone 12",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICES","error_message":"Not a supported device. Use a valid device value from the '/meta/devices' api."}"
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Samsung Galaxy S10",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICES","error_message":"Not a supported device. Use a valid device value from the '/meta/devices' api."}"
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","OS X Big Sur — Safari",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Windows 11 — Chrome",,,,,,,,,"Submit failed [400]: {"success":false,"error":"INVALID_DEVICE_THROTTLE","error_message":"Not a supported throttle value. Use a valid value from the '/meta/networks' api."}"
+2026-04-01,"https://www.pressreader.com","iPhone 12",,,,,,,,,"Submit failed [423]: {"success":false,"error":"ANOTHER_REPORT_IN_PROGRESS","error_message":"Only one report can be run at a time. Please wait till the completion of current report before triggering the next one."}"
+2026-04-01,"https://www.pressreader.com","Samsung Galaxy S10",,,,,,,,,"Submit failed [423]: {"success":false,"error":"ANOTHER_REPORT_IN_PROGRESS","error_message":"Only one report can be run at a time. Please wait till the completion of current report before triggering the next one."}"
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","iPhone 12",,,,,,,,,"Submit failed [423]: {"success":false,"error":"ANOTHER_REPORT_IN_PROGRESS","error_message":"Only one report can be run at a time. Please wait till the completion of current report before triggering the next one."}"
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Samsung Galaxy S10",,,,,,,,,"Submit failed [423]: {"success":false,"error":"ANOTHER_REPORT_IN_PROGRESS","error_message":"Only one report can be run at a time. Please wait till the completion of current report before triggering the next one."}"
+2026-04-01,"https://www.pressreader.com/catalog","iPhone 12",,,,,,,,,"Submit failed [423]: {"success":false,"error":"ANOTHER_REPORT_IN_PROGRESS","error_message":"Only one report can be run at a time. Please wait till the completion of current report before triggering the next one."}"
+2026-04-01,"https://www.pressreader.com/catalog","Samsung Galaxy S10",,,,,,,,,"Submit failed [423]: {"success":false,"error":"ANOTHER_REPORT_IN_PROGRESS","error_message":"Only one report can be run at a time. Please wait till the completion of current report before triggering the next one."}"
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","iPhone 12",,,,,,,,,"Submit failed [423]: {"success":false,"error":"ANOTHER_REPORT_IN_PROGRESS","error_message":"Only one report can be run at a time. Please wait till the completion of current report before triggering the next one."}"
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Samsung Galaxy S10",,,,,,,,,"Submit failed [423]: {"success":false,"error":"ANOTHER_REPORT_IN_PROGRESS","error_message":"Only one report can be run at a time. Please wait till the completion of current report before triggering the next one."}"
+2026-04-01,"https://www.pressreader.com","OS X Big Sur — Safari",,1687,,,,,,,
+2026-04-01,"https://www.pressreader.com","Windows 11 — Chrome",4699,1984,,,96,,,,
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","OS X Big Sur — Safari",,2063,,,,,,,
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Windows 11 — Chrome",2308,2476,,,78,,,,
+2026-04-01,"https://www.pressreader.com/catalog","OS X Big Sur — Safari",,2132,,,,,,,
+2026-04-01,"https://www.pressreader.com/catalog","Windows 11 — Chrome",4886,3060,,,96,,,,
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","OS X Big Sur — Safari",,1746,,,,,,,
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Windows 11 — Chrome",4247,2504,,,92,,,,
+2026-04-01,"https://www.pressreader.com","iPhone 12",,,,,,,,ad7d27f10543ef8185e4384ecd98b0f8371cd68c,
+2026-04-01,"https://www.pressreader.com","Samsung Galaxy S10",,,,,,,,5f7f49ec5edadc43eb5890850a927bcc2e84f618,
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","iPhone 12",,,,,,,,ac6f2693964c9c608e5132e6cfbd2d4d0e78a092,
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Samsung Galaxy S10",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-01,"https://www.pressreader.com/catalog","iPhone 12",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-01,"https://www.pressreader.com/catalog","Samsung Galaxy S10",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","iPhone 12",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Samsung Galaxy S10",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-01,"https://www.pressreader.com","OS X Big Sur — Safari",2595,2103,,,118,,,,
+2026-04-01,"https://www.pressreader.com","Windows 11 — Chrome",4394,2528,,,179,,,,
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","OS X Big Sur — Safari",1286,1619,,,81,,,,
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Windows 11 — Chrome",2080,2300,,,154,,,,
+2026-04-01,"https://www.pressreader.com/catalog","OS X Big Sur — Safari",1513,1167,,,122,,,,
+2026-04-01,"https://www.pressreader.com/catalog","Windows 11 — Chrome",3579,2180,,,101,,,,
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","OS X Big Sur — Safari",2356,1840,,,85,,,,
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Windows 11 — Chrome",4533,2364,,,180,,,,
+2026-04-01,"https://www.pressreader.com","iPhone 12",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-01,"https://www.pressreader.com","Samsung Galaxy S10",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","iPhone 12",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Samsung Galaxy S10",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-01,"https://www.pressreader.com/catalog","iPhone 12",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-01,"https://www.pressreader.com/catalog","Samsung Galaxy S10",,,,,,,,,"fetch failed"
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","iPhone 12",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Samsung Galaxy S10",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-01,"https://www.pressreader.com","OS X Big Sur — Safari",2438,1691,,,80,,,,
+2026-04-01,"https://www.pressreader.com","Windows 11 — Chrome",872,1024,,,92,,,,
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","OS X Big Sur — Safari",1570,1934,,,90,,,,
+2026-04-01,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Windows 11 — Chrome",1905,2412,,,102,,,,
+2026-04-01,"https://www.pressreader.com/catalog","OS X Big Sur — Safari",1753,1414,,,78,,,,
+2026-04-01,"https://www.pressreader.com/catalog","Windows 11 — Chrome",2336,2488,,,1281,,,,
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","OS X Big Sur — Safari",2555,2046,,,115,,,,
+2026-04-01,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Windows 11 — Chrome",1188,1360,,,77,,,,
+2026-04-07,"https://www.pressreader.com","iPhone 12",,,,,,,,d1f8ebedecb6417fc87fe75faddb7a8dd4747075,
+2026-04-07,"https://www.pressreader.com","Samsung Galaxy S10",,,,,,,,ac12b1bfd887729038794dd29525998cbc8c4fa6,
+2026-04-07,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","iPhone 12",,,,,,,,5b3865e1d06085c65182af1616d2c63bf8c43f65,
+2026-04-07,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Samsung Galaxy S10",,,,,,,,4e8c48e1c208f27b54cfaa5580017d48df47f3a0,
+2026-04-07,"https://www.pressreader.com/catalog","iPhone 12",,,,,,,,7ac481f8f712ea0a5b00dc962acab97d5f5d22d7,
+2026-04-07,"https://www.pressreader.com/catalog","Samsung Galaxy S10",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-07,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","iPhone 12",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-07,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Samsung Galaxy S10",,,,,,,,,"Submit failed [429]: {"success":false,"error":"QUOTA_EXHAUSTED","error_message":"You have exhausted your report quota for the day. Please try after 23 hours."}"
+2026-04-07,"https://www.pressreader.com","OS X Big Sur — Safari",1482,2315,,,166,,,,
+2026-04-07,"https://www.pressreader.com","Windows 11 — Chrome",1800,2168,,,73,,,,
+2026-04-07,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","OS X Big Sur — Safari",1668,2390,,,80,,,,
+2026-04-07,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Windows 11 — Chrome",1373,1556,,,89,,,,
+2026-04-07,"https://www.pressreader.com/catalog","OS X Big Sur — Safari",3913,4262,,,2865,,,,
+2026-04-07,"https://www.pressreader.com/catalog","Windows 11 — Chrome",5817,2984,,,81,,,,
+2026-04-07,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","OS X Big Sur — Safari",1648,2341,,,98,,,,
+2026-04-07,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Windows 11 — Chrome",1452,1704,,,85,,,,

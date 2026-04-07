@@ -1,0 +1,39 @@
+// URLs to test
+export const URLS = [
+  "https://www.pressreader.com",
+  "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+  "https://www.pressreader.com/catalog",
+  "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+];
+
+// Mobile profiles — tested via BrowserStack Speed Lab API
+// Field names and values must match exactly what /meta/devices returns (lowercase, integer os_version)
+export const MOBILE_PROFILES = [
+  {
+    label: "iPhone 12",
+    device: { os: "ios", os_version: 14, device: "iphone 12" },
+  },
+  {
+    label: "Samsung Galaxy S10",
+    device: { os: "android", os_version: 9, device: "samsung galaxy s10" },
+  },
+];
+
+// Desktop profiles — tested via BrowserStack Automate (Speed Lab API Beta doesn't support desktop)
+// Field names match what /meta/desktops returns
+export const DESKTOP_PROFILES = [
+  {
+    label: "OS X Big Sur — Safari",
+    os: "OS X",
+    osVersion: "Big Sur",
+    browser: "safari",
+    browserVersion: "14.1",
+  },
+  {
+    label: "Windows 11 — Chrome",
+    os: "Windows",
+    osVersion: "11",
+    browser: "chrome",
+    browserVersion: "latest",
+  },
+];

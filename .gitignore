@@ -1,0 +1,7 @@
+.env
+node_modules/
+.DS_Store
+.claude/
+
+# Exclude large source PDFs — only track JSON data and the report
+results/*.pdf

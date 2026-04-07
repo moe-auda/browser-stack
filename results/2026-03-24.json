@@ -1,0 +1,282 @@
+[
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "Samsung Galaxy S10",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1610,
+      "largestContentfulPaint": 2670,
+      "timeToInteractive": 7010,
+      "totalBlockingTime": 4,
+      "speedIndex": 7940,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 8260,
+      "firstContentfulPaint": 4440,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "OS X Big Sur — Safari",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 1500,
+      "firstContentfulPaint": 1620,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": 2760,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Windows 11 — Chrome",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1420,
+      "largestContentfulPaint": 3240,
+      "timeToInteractive": 7410,
+      "totalBlockingTime": 4,
+      "speedIndex": 4530,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Samsung Galaxy S10",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1690,
+      "largestContentfulPaint": 6940,
+      "timeToInteractive": 8280,
+      "totalBlockingTime": 4,
+      "speedIndex": 13870,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 3860,
+      "firstContentfulPaint": 4330,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "OS X Big Sur — Safari",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 1610,
+      "firstContentfulPaint": 1720,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": 4280,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "Windows 11 — Chrome",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1290,
+      "largestContentfulPaint": 8520,
+      "timeToInteractive": 11520,
+      "totalBlockingTime": 6,
+      "speedIndex": 13870,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 6650,
+      "firstContentfulPaint": 6670,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "Samsung Galaxy S10",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1610,
+      "largestContentfulPaint": 8260,
+      "timeToInteractive": 10040,
+      "totalBlockingTime": 6,
+      "speedIndex": 13510,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "OS X Big Sur — Safari",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 1670,
+      "firstContentfulPaint": 1920,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": 3930,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "Windows 11 — Chrome",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1430,
+      "largestContentfulPaint": 12030,
+      "timeToInteractive": 14760,
+      "totalBlockingTime": 9,
+      "speedIndex": 14440,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 5900,
+      "firstContentfulPaint": 5920,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "Samsung Galaxy S10",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": null,
+      "firstContentfulPaint": 1810,
+      "largestContentfulPaint": 7760,
+      "timeToInteractive": 8140,
+      "totalBlockingTime": 5,
+      "speedIndex": 9180,
+      "timeToFirstByte": null,
+      "dnsLookup": null,
+      "tcpConnect": null,
+      "totalRequests": null,
+      "totalTransferSize": null
+    },
+    "error": null
+  }
+]

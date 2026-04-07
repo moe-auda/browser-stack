@@ -1,0 +1,194 @@
+[
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": null,
+    "error": "Submit failed [429]: {\"success\":false,\"error\":\"QUOTA_EXHAUSTED\",\"error_message\":\"You have exhausted your report quota for the day. Please try after 23 hours.\"}"
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "Samsung Galaxy S10",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": null,
+    "error": "Submit failed [429]: {\"success\":false,\"error\":\"QUOTA_EXHAUSTED\",\"error_message\":\"You have exhausted your report quota for the day. Please try after 23 hours.\"}"
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": null,
+    "error": "Submit failed [429]: {\"success\":false,\"error\":\"QUOTA_EXHAUSTED\",\"error_message\":\"You have exhausted your report quota for the day. Please try after 23 hours.\"}"
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Samsung Galaxy S10",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": null,
+    "error": "Submit failed [429]: {\"success\":false,\"error\":\"QUOTA_EXHAUSTED\",\"error_message\":\"You have exhausted your report quota for the day. Please try after 23 hours.\"}"
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": null,
+    "error": "Submit failed [429]: {\"success\":false,\"error\":\"QUOTA_EXHAUSTED\",\"error_message\":\"You have exhausted your report quota for the day. Please try after 23 hours.\"}"
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "Samsung Galaxy S10",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": null,
+    "error": "fetch failed"
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": null,
+    "error": "Submit failed [429]: {\"success\":false,\"error\":\"QUOTA_EXHAUSTED\",\"error_message\":\"You have exhausted your report quota for the day. Please try after 23 hours.\"}"
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "Samsung Galaxy S10",
+    "source": "speedlab",
+    "reportId": null,
+    "metrics": null,
+    "error": "Submit failed [429]: {\"success\":false,\"error\":\"QUOTA_EXHAUSTED\",\"error_message\":\"You have exhausted your report quota for the day. Please try after 23 hours.\"}"
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "OS X Big Sur — Safari",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "largestContentfulPaint": null,
+      "tcpConnect": 0,
+      "pageLoadTime": 2438,
+      "timeToFirstByte": 80,
+      "dnsLookup": 0,
+      "transferSize": null,
+      "firstContentfulPaint": 1691
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "Windows 11 — Chrome",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "dnsLookup": 0,
+      "firstContentfulPaint": 1024,
+      "largestContentfulPaint": null,
+      "pageLoadTime": 872,
+      "tcpConnect": 13,
+      "timeToFirstByte": 92,
+      "transferSize": 2390
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "OS X Big Sur — Safari",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "largestContentfulPaint": null,
+      "tcpConnect": 0,
+      "pageLoadTime": 1570,
+      "timeToFirstByte": 90,
+      "dnsLookup": 0,
+      "transferSize": null,
+      "firstContentfulPaint": 1934
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Windows 11 — Chrome",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "dnsLookup": 0,
+      "firstContentfulPaint": 2412,
+      "largestContentfulPaint": null,
+      "pageLoadTime": 1905,
+      "tcpConnect": 23,
+      "timeToFirstByte": 102,
+      "transferSize": 2391
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "OS X Big Sur — Safari",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "largestContentfulPaint": null,
+      "tcpConnect": 0,
+      "pageLoadTime": 1753,
+      "timeToFirstByte": 78,
+      "dnsLookup": 0,
+      "transferSize": null,
+      "firstContentfulPaint": 1414
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "Windows 11 — Chrome",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "dnsLookup": 0,
+      "firstContentfulPaint": 2488,
+      "largestContentfulPaint": null,
+      "pageLoadTime": 2336,
+      "tcpConnect": 0,
+      "timeToFirstByte": 1281,
+      "transferSize": 2390
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "OS X Big Sur — Safari",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "largestContentfulPaint": null,
+      "tcpConnect": 0,
+      "pageLoadTime": 2555,
+      "timeToFirstByte": 115,
+      "dnsLookup": 0,
+      "transferSize": null,
+      "firstContentfulPaint": 2046
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "Windows 11 — Chrome",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "dnsLookup": 0,
+      "firstContentfulPaint": 1360,
+      "largestContentfulPaint": null,
+      "pageLoadTime": 1188,
+      "tcpConnect": 20,
+      "timeToFirstByte": 77,
+      "transferSize": 2405
+    },
+    "error": null
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "name": "browserstack-speedlab-weekly",
+  "version": "1.0.0",
+  "description": "Weekly BrowserStack Speed Lab tests for PressReader URLs across 4 device profiles",
+  "main": "run-tests.js",
+  "type": "module",
+  "scripts": {
+    "run": "node run-tests.js",
+    "run:iphone": "node run-tests.js --iphone",
+    "run:galaxy": "node run-tests.js --galaxy",
+    "run:desktop": "node run-tests.js --desktop",
+    "report": "node generate-report.js",
+    "install-cron": "node setup-cron.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "node-cron": "^3.0.3"
+  }
+}
