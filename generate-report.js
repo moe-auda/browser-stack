@@ -204,7 +204,7 @@ function metricClass(val, good, warn) {
 function generateHtml(byDate) {
   const byWeek    = groupByWeek(byDate);
   const weekKeys  = Object.keys(byWeek).sort();
-  const weekLabels= weekKeys.map((_, i) => `Week ${i + 1}`);
+  const weekLabels= weekKeys.map((k, i) => `Week ${i + 1} (${weekDateRange(k)})`);
   const weekCount = weekKeys.length;
   const latestKey = weekKeys[weekKeys.length - 1] ?? "";
   const latestLabel  = weekLabels[weekLabels.length - 1] ?? "No data";
