@@ -166,7 +166,9 @@ function buildChartData(byWeek, weekKeys, weekLabels, targetUrl, metricKey) {
     return { label: profile, data, borderColor: c.border, backgroundColor: c.background,
              borderWidth: 2, pointRadius: 4, pointHoverRadius: 6, tension: 0.3, spanGaps: true };
   });
-  return { labels: weekLabels, datasets };
+  // Drop profiles that have no data at all for this metric — keeps legend clean.
+  const activeDatasets = datasets.filter((ds) => ds.data.some((v) => v != null));
+  return { labels: weekLabels, datasets: activeDatasets };
 }
 
 // ─── Latest scores (from most-recent data per url/profile across all weeks) ──
