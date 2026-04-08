@@ -26,10 +26,10 @@ const URLS = [
 ];
 
 const URL_LABELS = {
-  "https://www.pressreader.com": "PressReader Home",
-  "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251": "USA Today Edition",
-  "https://www.pressreader.com/catalog": "Catalog",
-  "https://www.pressreader.com/newspapers/n/the-wall-street-journal": "Wall Street Journal",
+  "https://www.pressreader.com": "PressReader Home Page",
+  "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251": "Article Page Template",
+  "https://www.pressreader.com/catalog": "Catalog Page Template",
+  "https://www.pressreader.com/newspapers/n/the-wall-street-journal": "Publication Page Template",
 };
 
 const PROFILES = ["iPhone 12", "Samsung Galaxy S10", "OS X Big Sur — Safari", "Windows 11 — Chrome"];
@@ -66,34 +66,30 @@ const SCORE_DEFS = [
 
 // ─── Week utilities ──────────────────────────────────────────────────────────
 
-function isoWeekKey(dateStr) {
+// Weeks are anchored to Tuesday so that the 4-day test run (Fri → Mon)
+// always falls in the same reporting week, ready for the Tuesday meeting.
+// Week key = the date string of the Tuesday that started that week.
+function meetingWeekKey(dateStr) {
   const d = new Date(dateStr + "T12:00:00Z");
-  const day = d.getUTCDay() || 7;
-  d.setUTCDate(d.getUTCDate() + 4 - day); // Thursday in the target week
-  const year = d.getUTCFullYear();
-  const startOfYear = new Date(Date.UTC(year, 0, 1));
-  const week = Math.ceil(((d - startOfYear) / 86400000 + 1) / 7);
-  return `${year}-W${String(week).padStart(2, "0")}`;
+  const day = d.getUTCDay(); // 0=Sun, 1=Mon, 2=Tue, …
+  const daysToTuesday = (day - 2 + 7) % 7;  // how many days back to reach Tue
+  d.setUTCDate(d.getUTCDate() - daysToTuesday);
+  return d.toISOString().slice(0, 10); // "YYYY-MM-DD" of that Tuesday
 }
 
 function weekDateRange(weekKey) {
-  const [yearStr, wStr] = weekKey.split("-W");
-  const year = parseInt(yearStr, 10);
-  const week = parseInt(wStr, 10);
-  const jan4 = new Date(Date.UTC(year, 0, 4));
-  const dayOfWeek = jan4.getUTCDay() || 7;
-  const monday = new Date(jan4);
-  monday.setUTCDate(jan4.getUTCDate() - dayOfWeek + 1 + (week - 1) * 7);
-  const sunday = new Date(monday);
-  sunday.setUTCDate(monday.getUTCDate() + 6);
+  // weekKey is the Tuesday; the reporting week runs Tue → Mon (6 days later)
+  const tuesday = new Date(weekKey + "T12:00:00Z");
+  const monday  = new Date(tuesday);
+  monday.setUTCDate(tuesday.getUTCDate() + 6);
   const fmt = (d) => d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
-  return `${fmt(monday)} – ${fmt(sunday)}`;
+  return `${fmt(tuesday)} – ${fmt(monday)}`;
 }
 
 function groupByWeek(byDate) {
   const byWeek = {};
   for (const [date, entries] of Object.entries(byDate)) {
-    const key = isoWeekKey(date);
+    const key = meetingWeekKey(date);
     if (!byWeek[key]) byWeek[key] = [];
     byWeek[key].push(...(entries ?? []));
   }
