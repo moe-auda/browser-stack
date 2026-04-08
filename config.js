@@ -19,21 +19,15 @@ export const MOBILE_PROFILES = [
   },
 ];
 
-// Desktop profiles — tested via BrowserStack Automate (Speed Lab API Beta doesn't support desktop)
-// Field names match what /meta/desktops returns
+// Desktop profiles — tested via BrowserStack Speed Lab API
+// Field names and values must match exactly what /meta/desktops returns (lowercase)
 export const DESKTOP_PROFILES = [
   {
     label: "OS X Big Sur — Safari",
-    os: "OS X",
-    osVersion: "Big Sur",
-    browser: "safari",
-    browserVersion: "14.1",
+    browser: { os: "os x", os_version: "big sur", browser_name: "safari", browser_version: 14 },
   },
   {
     label: "Windows 11 — Chrome",
-    os: "Windows",
-    osVersion: "11",
-    browser: "chrome",
-    browserVersion: "latest",
+    browser: { os: "windows", os_version: "11", browser_name: "chrome", browser_version: 109 },
   },
 ];

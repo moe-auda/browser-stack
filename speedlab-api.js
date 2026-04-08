@@ -3,10 +3,9 @@
  * Docs: https://www.browserstack.com/docs/speedlab/api
  *
  * Confirmed working format (verified against live API):
- *   - Use "device" key (singular object) — NOT "devices" array
- *   - Device names must be lowercase, os_version must be an integer
- *   - Use "device_network" key for mobile network throttling
- *   - Desktop browser testing is NOT supported in this Beta API
+ *   - Mobile: use "device" key (singular object), "device_network" for throttling
+ *   - Desktop: use "browser" key (singular object), no network throttling field
+ *   - Device/browser names must be lowercase, os_version must be an integer
  */
 
 const BASE_URL = "https://api.browserstack.com/speedlab/beta";
@@ -20,15 +19,20 @@ function authHeader(username, accessKey) {
 }
 
 /**
- * Submit a Speed Lab test for a single mobile device and return the report_id.
+ * Submit a Speed Lab test for a mobile device or desktop browser and return the report_id.
  * Automatically retries if another report is already in progress (HTTP 423).
+ *
+ * For mobile profiles pass { deviceProfile: { device: {...} } } + network.
+ * For desktop profiles pass { deviceProfile: { browser: {...} } } — no network field.
  */
 export async function submitMobileTest({ username, accessKey, url, deviceProfile, network, region }) {
+  const isMobile = !!deviceProfile.device;
   const body = {
     url,
     region,
-    device: deviceProfile.device,
-    device_network: network,
+    ...(isMobile
+      ? { device: deviceProfile.device, device_network: network }
+      : { browser: deviceProfile.browser }),
   };
 
   for (let attempt = 1; attempt <= MAX_SUBMIT_RETRIES; attempt++) {

@@ -1,8 +1,7 @@
 /**
  * BrowserStack Weekly Test Runner
  *
- * Mobile (iPhone 12, Galaxy S10)  → Speed Lab API
- * Desktop (OS X Big Sur, Win 11)  → BrowserStack Automate
+ * All profiles (mobile + desktop) → Speed Lab API
  *
  * Usage:
  *   node run-tests.js              — all 16 tests
@@ -17,7 +16,6 @@ import { fileURLToPath } from "url";
 import path from "path";
 import { URLS, MOBILE_PROFILES, DESKTOP_PROFILES } from "./config.js";
 import { submitMobileTest, waitForReport } from "./speedlab-api.js";
-import { runDesktopTest } from "./automate-desktop.js";
 import { extractMetrics, saveResults, printSummary } from "./reporter.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -29,9 +27,9 @@ const FLAG_GALAXY  = args.includes("--galaxy");
 const FLAG_DESKTOP = args.includes("--desktop");
 const FLAG_ALL     = !FLAG_IPHONE && !FLAG_GALAXY && !FLAG_DESKTOP;
 
-const USERNAME = process.env.BROWSERSTACK_USERNAME;
+const USERNAME   = process.env.BROWSERSTACK_USERNAME;
 const ACCESS_KEY = process.env.BROWSERSTACK_ACCESS_KEY;
-const REGION = process.env.SPEEDLAB_REGION ?? "usw";
+const REGION     = process.env.SPEEDLAB_REGION  ?? "usw";
 const MOBILE_NETWORK = process.env.MOBILE_NETWORK ?? "4g_normal";
 
 if (!USERNAME || !ACCESS_KEY) {
@@ -39,9 +37,9 @@ if (!USERNAME || !ACCESS_KEY) {
   process.exit(1);
 }
 
-// ─── Mobile test runner (Speed Lab API) ────────────────────────────────────
+// ─── Speed Lab test runner (mobile + desktop) ──────────────────────────────
 
-async function runMobileTest({ url, profile }) {
+async function runTest({ url, profile }) {
   console.log(`  [SpeedLab]  ${profile.label} — ${url}`);
 
   try {
@@ -65,20 +63,6 @@ async function runMobileTest({ url, profile }) {
   }
 }
 
-// ─── Desktop test runner (BrowserStack Automate) ──────────────────────────
-
-async function runDesktopTestWrapped({ url, profile }) {
-  console.log(`  [Automate]  ${profile.label} — ${url}`);
-
-  try {
-    const metrics = await runDesktopTest({ username: USERNAME, accessKey: ACCESS_KEY, url, profile });
-    return { url, profile: profile.label, source: "automate", reportId: null, metrics, error: null };
-  } catch (err) {
-    console.error(`  [Failed]    ${profile.label} — ${err.message}`);
-    return { url, profile: profile.label, source: "automate", reportId: null, metrics: null, error: err.message };
-  }
-}
-
 // ─── Batch runner ──────────────────────────────────────────────────────────
 
 async function runBatch(tasks, concurrency) {
@@ -96,7 +80,6 @@ async function runBatch(tasks, concurrency) {
 async function main() {
   const runDate = new Date().toISOString().slice(0, 10);
 
-  // Decide which profiles to run based on flags
   const mobileProfilesToRun = MOBILE_PROFILES.filter((p) => {
     if (FLAG_ALL)    return true;
     if (FLAG_IPHONE) return p.label === "iPhone 12";
@@ -104,39 +87,25 @@ async function main() {
     return false;
   });
 
-  const runDesktop = FLAG_ALL || FLAG_DESKTOP;
+  const desktopProfilesToRun = (FLAG_ALL || FLAG_DESKTOP) ? DESKTOP_PROFILES : [];
 
-  const mobileTasks = URLS.flatMap((url) =>
-    mobileProfilesToRun.map((profile) => () => runMobileTest({ url, profile }))
+  const allProfiles = [...mobileProfilesToRun, ...desktopProfilesToRun];
+  const tasks = URLS.flatMap((url) =>
+    allProfiles.map((profile) => () => runTest({ url, profile }))
   );
 
-  const desktopTasks = runDesktop
-    ? URLS.flatMap((url) => DESKTOP_PROFILES.map((profile) => () => runDesktopTestWrapped({ url, profile })))
-    : [];
-
-  const totalTests = mobileTasks.length + desktopTasks.length;
   const mode = FLAG_IPHONE ? "--iphone" : FLAG_GALAXY ? "--galaxy" : FLAG_DESKTOP ? "--desktop" : "full";
 
   console.log(`\nBrowserStack Weekly Performance Run`);
   console.log(`Date:    ${runDate}  Mode: ${mode}`);
   console.log(`Region:  ${REGION}`);
-  console.log(`Total:   ${totalTests} tests (${mobileTasks.length} mobile + ${desktopTasks.length} desktop)\n`);
+  console.log(`Total:   ${tasks.length} tests (${mobileProfilesToRun.length * URLS.length} mobile + ${desktopProfilesToRun.length * URLS.length} desktop)\n`);
+  console.log("── Speed Lab ──────────────────────────────────────────────────");
 
-  // Mobile: must run one at a time — Speed Lab quota: 1 concurrent per account
-  if (mobileTasks.length > 0) {
-    console.log("── Mobile (Speed Lab) ─────────────────────────────────────────");
-  }
-  const mobileResults = await runBatch(mobileTasks, 1);
+  // Speed Lab quota: 1 concurrent per account
+  const allResults = await runBatch(tasks, 1);
 
-  // Desktop: 2 concurrent sessions
-  if (desktopTasks.length > 0) {
-    console.log("\n── Desktop (Automate) ─────────────────────────────────────────");
-  }
-  const desktopResults = await runBatch(desktopTasks, 2);
-
-  const allResults = [...mobileResults, ...desktopResults];
   const { jsonFile, csvFile } = saveResults(runDate, allResults);
-
   printSummary(runDate, allResults);
 
   const passed = allResults.filter((r) => !r.error).length;
