@@ -32,7 +32,7 @@ export async function submitMobileTest({ username, accessKey, url, deviceProfile
     region,
     ...(isMobile
       ? { device: deviceProfile.device, device_network: network }
-      : { browser: deviceProfile.browser }),
+      : { desktop: deviceProfile.browser }),
   };
 
   for (let attempt = 1; attempt <= MAX_SUBMIT_RETRIES; attempt++) {
