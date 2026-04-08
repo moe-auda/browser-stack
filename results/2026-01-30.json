@@ -25,7 +25,7 @@
     "source": "speedlab",
     "reportId": null,
     "metrics": {
-      "pageLoadTime": 6480,
+      "pageLoadTime": null,
       "firstContentfulPaint": 6500,
       "largestContentfulPaint": null,
       "timeToInteractive": null,
@@ -105,7 +105,7 @@
     "source": "speedlab",
     "reportId": null,
     "metrics": {
-      "pageLoadTime": 6310,
+      "pageLoadTime": null,
       "firstContentfulPaint": 6330,
       "largestContentfulPaint": null,
       "timeToInteractive": null,

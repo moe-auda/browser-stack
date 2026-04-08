@@ -47,7 +47,7 @@ const METRICS = [
   { key: "largestContentfulPaint",label: "Largest Contentful Paint", abbr: "LCP",  unit: "ms", good: 2500, warn: 4000 },
   { key: "totalBlockingTime",     label: "Total Blocking Time",      abbr: "TBT",  unit: "ms", good: 200,  warn: 600  },
   { key: "timeToInteractive",     label: "Time to Interactive",      abbr: "TTI",  unit: "ms", good: 3800, warn: 7300 },
-  { key: "pageLoadTime",          label: "Page Load Time",           abbr: "Load", unit: "ms", good: 2000, warn: 5000 },
+  { key: "pageLoadTime",          label: "Page Load Time",           abbr: "Load", unit: "ms", good: 2000, warn: 5000, desktopOnly: true },
   { key: "speedIndex",            label: "Speed Index",              abbr: "SI",   unit: "ms", good: 3400, warn: 5800 },
 ];
 
@@ -152,7 +152,7 @@ function loadAllResults() {
 
 // ─── Build chart datasets (week-based) ───────────────────────────────────────
 
-function buildChartData(byWeek, weekKeys, weekLabels, targetUrl, metricKey) {
+function buildChartData(byWeek, weekKeys, weekLabels, targetUrl, metricKey, desktopOnly) {
   const isScore = metricKey === "performanceScore";
   const datasets = PROFILES.map((profile) => {
     const data = weekKeys.map((wk) => {
@@ -166,9 +166,11 @@ function buildChartData(byWeek, weekKeys, weekLabels, targetUrl, metricKey) {
     return { label: profile, data, borderColor: c.border, backgroundColor: c.background,
              borderWidth: 2, pointRadius: 4, pointHoverRadius: 6, tension: 0.3, spanGaps: true };
   });
-  // Drop profiles that have no data at all for this metric — keeps legend clean.
-  const activeDatasets = datasets.filter((ds) => ds.data.some((v) => v != null));
-  return { labels: weekLabels, datasets: activeDatasets };
+  // For desktop-only metrics, drop profiles that have no data at all.
+  if (desktopOnly) {
+    return { labels: weekLabels, datasets: datasets.filter((ds) => ds.data.some((v) => v != null)) };
+  }
+  return { labels: weekLabels, datasets };
 }
 
 // ─── Latest scores (from most-recent data per url/profile across all weeks) ──
@@ -229,14 +231,14 @@ function generateHtml(byDate) {
   // ── Charts: Performance Score (full-width) + 6 secondary (3 rows × 2) ──
   const CHART_DEFS = [
     { key: "performanceScore", label: "Performance Score (0–100)", isScore: true,  full: true  },
-    ...METRICS.map((m) => ({ key: m.key, label: `${m.label} (ms)`, isScore: false, full: false })),
+    ...METRICS.map((m) => ({ key: m.key, label: `${m.label} (ms)${m.desktopOnly ? " — Desktop Only" : ""}`, isScore: false, full: false, desktopOnly: m.desktopOnly ?? false })),
   ];
 
   const charts = [];
   for (const url of URLS) {
     for (const def of CHART_DEFS) {
       const id   = `chart_${charts.length}`;
-      const data = buildChartData(byWeek, weekKeys, weekLabels, url, def.key);
+      const data = buildChartData(byWeek, weekKeys, weekLabels, url, def.key, def.desktopOnly);
       charts.push({ id, url, urlLabel: URL_LABELS[url], ...def, data });
     }
   }

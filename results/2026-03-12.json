@@ -25,7 +25,7 @@
     "source": "speedlab",
     "reportId": null,
     "metrics": {
-      "pageLoadTime": 3900,
+      "pageLoadTime": null,
       "firstContentfulPaint": 5990,
       "largestContentfulPaint": null,
       "timeToInteractive": null,
@@ -105,7 +105,7 @@
     "source": "speedlab",
     "reportId": null,
     "metrics": {
-      "pageLoadTime": 5720,
+      "pageLoadTime": null,
       "firstContentfulPaint": 5750,
       "largestContentfulPaint": null,
       "timeToInteractive": null,
@@ -145,7 +145,7 @@
     "source": "speedlab",
     "reportId": null,
     "metrics": {
-      "pageLoadTime": 17390,
+      "pageLoadTime": null,
       "firstContentfulPaint": 6020,
       "largestContentfulPaint": null,
       "timeToInteractive": null,
