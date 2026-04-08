@@ -5,19 +5,22 @@ const RESULTS_DIR = "./results";
 
 /**
  * Extract the key performance metrics from a Speed Lab report response.
+ * API response shape (current):
+ *   report.results[0].median_run.general_metrics.{ fcp, lcp, tti, tbt, speed_index }
+ *   report.results[0].median_run.performance_score
  */
 export function extractMetrics(report) {
-  const r = report.results ?? {};
-  const visual = r.visual_metrics ?? {};
-  const nav = r.navigation_timings ?? {};
+  const run = report.results?.[0]?.median_run ?? {};
+  const gm  = run.general_metrics ?? {};
 
   return {
-    pageLoadTime: r.page_load_time_ms ?? null,
-    firstContentfulPaint: visual.first_contentful_paint_ms ?? null,
-    largestContentfulPaint: visual.largest_contentful_paint_ms ?? null,
-    timeToInteractive: visual.time_to_interactive_ms ?? null,
-    totalBlockingTime: visual.total_blocking_time_ms ?? null,
-    speedIndex: visual.speed_index_ms ?? null,
+    pageLoadTime:            null,           // not provided by Speed Lab API
+    firstContentfulPaint:    gm.fcp         ?? null,
+    largestContentfulPaint:  gm.lcp         ?? null,
+    timeToInteractive:       gm.tti         ?? null,
+    totalBlockingTime:       gm.tbt         ?? null,
+    speedIndex:              gm.speed_index ?? null,
+    browserPerformanceScore: run.performance_score ?? null,
   };
 }
 

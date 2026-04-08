@@ -119,6 +119,13 @@ function calculateScore(metrics) {
   return totalW === 0 ? null : Math.round(sum / totalW);
 }
 
+// Use BrowserStack's own score for Speed Lab runs; fall back to calculated for desktop.
+function getScore(entry) {
+  if (!entry?.metrics) return null;
+  if (entry.metrics.browserPerformanceScore != null) return entry.metrics.browserPerformanceScore;
+  return calculateScore(entry.metrics);
+}
+
 function scoreLabel(score) {
   if (score == null) return "score-na";
   if (score >= 75) return "score-good";
@@ -148,7 +155,7 @@ function buildChartData(byWeek, weekKeys, weekLabels, targetUrl, metricKey) {
         (e) => e.url === targetUrl && e.profile === profile && e.metrics != null
       );
       if (!entry) return null;
-      return isScore ? calculateScore(entry.metrics) : (entry.metrics[metricKey] ?? null);
+      return isScore ? getScore(entry) : (entry.metrics[metricKey] ?? null);
     });
     const c = PROFILE_COLORS[profile];
     return { label: profile, data, borderColor: c.border, backgroundColor: c.background,
@@ -172,7 +179,7 @@ function buildLatestScores(byWeek, weekKeys) {
     const profiles = PROFILES.map((profile) => {
       const entry = best[`${url}||${profile}`];
       const m = entry?.metrics ?? null;
-      const score = calculateScore(m);
+      const score = getScore(entry);
       return {
         profile, score,
         metrics: METRICS.reduce((acc, { key }) => { acc[key] = m?.[key] ?? null; return acc; }, {}),

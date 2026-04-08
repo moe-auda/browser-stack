@@ -6,11 +6,12 @@
     "reportId": "8b1b071292fc2026fe247b53fc2c10549a9a2d91",
     "metrics": {
       "pageLoadTime": null,
-      "firstContentfulPaint": null,
-      "largestContentfulPaint": null,
-      "timeToInteractive": null,
-      "totalBlockingTime": null,
-      "speedIndex": null
+      "firstContentfulPaint": 1582,
+      "largestContentfulPaint": 6008,
+      "timeToInteractive": 7822,
+      "totalBlockingTime": 4267,
+      "speedIndex": 7240,
+      "browserPerformanceScore": 36
     },
     "error": null
   },
@@ -21,11 +22,12 @@
     "reportId": "2cbdabfe028afbc42b28e6cebbf57da790fee889",
     "metrics": {
       "pageLoadTime": null,
-      "firstContentfulPaint": null,
-      "largestContentfulPaint": null,
-      "timeToInteractive": null,
-      "totalBlockingTime": null,
-      "speedIndex": null
+      "firstContentfulPaint": 1988,
+      "largestContentfulPaint": 7068,
+      "timeToInteractive": 8324,
+      "totalBlockingTime": 3334,
+      "speedIndex": 8607,
+      "browserPerformanceScore": 31
     },
     "error": null
   },
@@ -36,11 +38,12 @@
     "reportId": "75ac579a88a1b56d177d70c8f8c120bf43d80bd4",
     "metrics": {
       "pageLoadTime": null,
-      "firstContentfulPaint": null,
-      "largestContentfulPaint": null,
-      "timeToInteractive": null,
-      "totalBlockingTime": null,
-      "speedIndex": null
+      "firstContentfulPaint": 1839,
+      "largestContentfulPaint": 7409,
+      "timeToInteractive": 8671,
+      "totalBlockingTime": 4377,
+      "speedIndex": 10232,
+      "browserPerformanceScore": 17
     },
     "error": null
   },
@@ -51,11 +54,12 @@
     "reportId": "8ae87c81fdd29ab09f8d3691ed15e5328a67e2e3",
     "metrics": {
       "pageLoadTime": null,
-      "firstContentfulPaint": null,
-      "largestContentfulPaint": null,
-      "timeToInteractive": null,
-      "totalBlockingTime": null,
-      "speedIndex": null
+      "firstContentfulPaint": 1582,
+      "largestContentfulPaint": 6010,
+      "timeToInteractive": 6766,
+      "totalBlockingTime": 2618,
+      "speedIndex": 7056,
+      "browserPerformanceScore": 38
     },
     "error": null
   }
