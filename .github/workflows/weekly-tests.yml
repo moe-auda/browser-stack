@@ -1,28 +1,33 @@
 name: Weekly BrowserStack Tests
 
-# Runs across 3 days to stay within Speed Lab API quota (~6 tests/day)
-# Day 1 Mon — iPhone 12        (4 Speed Lab tests)
-# Day 2 Wed — Samsung Galaxy   (4 Speed Lab tests)
-# Day 3 Fri — Desktop Safari + Chrome  (8 Automate tests)
+# Runs across 4 days (4 tests/day) to stay within Speed Lab API quota.
+# All results are ready before the Tuesday 11 AM PT weekly meeting.
 #
-# After each run, results are committed and GitHub Pages is updated automatically.
+# Fri  10:00 UTC — iPhone 12          (4 Speed Lab tests)
+# Sat  10:00 UTC — Samsung Galaxy S10 (4 Speed Lab tests)
+# Sun  10:00 UTC — OS X Safari        (4 Speed Lab tests)
+# Mon  10:00 UTC — Windows Chrome     (4 Speed Lab tests)
+#
+# After each run, results are committed and GitHub Pages updates automatically.
 
 on:
   schedule:
-    - cron: '0 14 * * 1'   # Monday    14:00 UTC
-    - cron: '0 14 * * 3'   # Wednesday 14:00 UTC
-    - cron: '0 14 * * 5'   # Friday    14:00 UTC
+    - cron: '0 10 * * 5'   # Friday    10:00 UTC  (3 AM PDT)
+    - cron: '0 10 * * 6'   # Saturday  10:00 UTC  (3 AM PDT)
+    - cron: '0 10 * * 0'   # Sunday    10:00 UTC  (3 AM PDT)
+    - cron: '0 10 * * 1'   # Monday    10:00 UTC  (3 AM PDT)
   workflow_dispatch:
     inputs:
       day:
-        description: 'Which day to run'
+        description: 'Which profile to run'
         required: true
         default: 'iphone'
         type: choice
         options:
           - iphone
           - galaxy
-          - desktop
+          - safari
+          - chrome
           - all
 
 jobs:
@@ -43,26 +48,33 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests — Monday (iPhone 12)
-        if: github.event.schedule == '0 14 * * 1' || (github.event_name == 'workflow_dispatch' && inputs.day == 'iphone')
+      - name: Run tests — Friday (iPhone 12)
+        if: github.event.schedule == '0 10 * * 5' || (github.event_name == 'workflow_dispatch' && inputs.day == 'iphone')
         env:
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
         run: node run-tests.js --iphone
 
-      - name: Run tests — Wednesday (Samsung Galaxy S10)
-        if: github.event.schedule == '0 14 * * 3' || (github.event_name == 'workflow_dispatch' && inputs.day == 'galaxy')
+      - name: Run tests — Saturday (Samsung Galaxy S10)
+        if: github.event.schedule == '0 10 * * 6' || (github.event_name == 'workflow_dispatch' && inputs.day == 'galaxy')
         env:
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
         run: node run-tests.js --galaxy
 
-      - name: Run tests — Friday (Desktop)
-        if: github.event.schedule == '0 14 * * 5' || (github.event_name == 'workflow_dispatch' && inputs.day == 'desktop')
+      - name: Run tests — Sunday (OS X Big Sur Safari)
+        if: github.event.schedule == '0 10 * * 0' || (github.event_name == 'workflow_dispatch' && inputs.day == 'safari')
         env:
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-        run: node run-tests.js --desktop
+        run: node run-tests.js --safari
+
+      - name: Run tests — Monday (Windows 11 Chrome)
+        if: github.event.schedule == '0 10 * * 1' || (github.event_name == 'workflow_dispatch' && inputs.day == 'chrome')
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        run: node run-tests.js --chrome
 
       - name: Run all tests (manual override)
         if: github.event_name == 'workflow_dispatch' && inputs.day == 'all'

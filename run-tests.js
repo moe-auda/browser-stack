@@ -5,9 +5,11 @@
  *
  * Usage:
  *   node run-tests.js              — all 16 tests
- *   node run-tests.js --iphone     — iPhone 12 only (4 tests)   — Day 1
- *   node run-tests.js --galaxy     — Galaxy S10 only (4 tests)  — Day 2
- *   node run-tests.js --desktop    — desktop only (8 tests)     — Day 3
+ *   node run-tests.js --iphone     — iPhone 12 only        (4 tests) — Friday
+ *   node run-tests.js --galaxy     — Galaxy S10 only       (4 tests) — Saturday
+ *   node run-tests.js --safari     — OS X Safari only      (4 tests) — Sunday
+ *   node run-tests.js --chrome     — Windows Chrome only   (4 tests) — Monday
+ *   node run-tests.js --desktop    — Safari + Chrome       (8 tests) — manual override
  */
 
 import "dotenv/config";
@@ -24,8 +26,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const args = process.argv.slice(2);
 const FLAG_IPHONE  = args.includes("--iphone");
 const FLAG_GALAXY  = args.includes("--galaxy");
+const FLAG_SAFARI  = args.includes("--safari");
+const FLAG_CHROME  = args.includes("--chrome");
 const FLAG_DESKTOP = args.includes("--desktop");
-const FLAG_ALL     = !FLAG_IPHONE && !FLAG_GALAXY && !FLAG_DESKTOP;
+const FLAG_ALL     = !FLAG_IPHONE && !FLAG_GALAXY && !FLAG_SAFARI && !FLAG_CHROME && !FLAG_DESKTOP;
 
 const USERNAME   = process.env.BROWSERSTACK_USERNAME;
 const ACCESS_KEY = process.env.BROWSERSTACK_ACCESS_KEY;
@@ -87,14 +91,19 @@ async function main() {
     return false;
   });
 
-  const desktopProfilesToRun = (FLAG_ALL || FLAG_DESKTOP) ? DESKTOP_PROFILES : [];
+  const desktopProfilesToRun = DESKTOP_PROFILES.filter((p) => {
+    if (FLAG_ALL || FLAG_DESKTOP) return true;
+    if (FLAG_SAFARI) return p.label === "OS X Big Sur — Safari";
+    if (FLAG_CHROME) return p.label === "Windows 11 — Chrome";
+    return false;
+  });
 
   const allProfiles = [...mobileProfilesToRun, ...desktopProfilesToRun];
   const tasks = URLS.flatMap((url) =>
     allProfiles.map((profile) => () => runTest({ url, profile }))
   );
 
-  const mode = FLAG_IPHONE ? "--iphone" : FLAG_GALAXY ? "--galaxy" : FLAG_DESKTOP ? "--desktop" : "full";
+  const mode = FLAG_IPHONE ? "--iphone" : FLAG_GALAXY ? "--galaxy" : FLAG_SAFARI ? "--safari" : FLAG_CHROME ? "--chrome" : FLAG_DESKTOP ? "--desktop" : "full";
 
   console.log(`\nBrowserStack Weekly Performance Run`);
   console.log(`Date:    ${runDate}  Mode: ${mode}`);
