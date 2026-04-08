@@ -119,6 +119,11 @@ function calculateScore(metrics) {
   return totalW === 0 ? null : Math.round(sum / totalW);
 }
 
+// Returns true only if the entry has at least one non-null metric value.
+function hasAnyMetric(entry) {
+  return entry.metrics != null && Object.values(entry.metrics).some((v) => v != null);
+}
+
 // Use BrowserStack's own score for Speed Lab runs; fall back to calculated for desktop.
 function getScore(entry) {
   if (!entry?.metrics) return null;
@@ -152,7 +157,7 @@ function buildChartData(byWeek, weekKeys, weekLabels, targetUrl, metricKey) {
   const datasets = PROFILES.map((profile) => {
     const data = weekKeys.map((wk) => {
       const entry = (byWeek[wk] ?? []).find(
-        (e) => e.url === targetUrl && e.profile === profile && e.metrics != null
+        (e) => e.url === targetUrl && e.profile === profile && hasAnyMetric(e)
       );
       if (!entry) return null;
       return isScore ? getScore(entry) : (entry.metrics[metricKey] ?? null);
@@ -171,7 +176,7 @@ function buildLatestScores(byWeek, weekKeys) {
   for (const wk of weekKeys) {
     for (const entry of byWeek[wk] ?? []) {
       const key = `${entry.url}||${entry.profile}`;
-      if (!best[key] || entry.metrics != null) best[key] = entry;
+      if (!best[key] || hasAnyMetric(entry)) best[key] = entry;
     }
   }
 
