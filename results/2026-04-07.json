@@ -6,14 +6,12 @@
     "reportId": "d1f8ebedecb6417fc87fe75faddb7a8dd4747075",
     "metrics": {
       "pageLoadTime": null,
-      "firstContentfulPaint": null,
-      "speedIndex": null,
+      "firstContentfulPaint": 1788,
       "largestContentfulPaint": null,
-      "timeToFirstByte": null,
-      "dnsLookup": null,
-      "tcpConnect": null,
-      "totalRequests": null,
-      "totalTransferSize": null
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "browserPerformanceScore": 97
     },
     "error": null
   },
@@ -24,14 +22,12 @@
     "reportId": "ac12b1bfd887729038794dd29525998cbc8c4fa6",
     "metrics": {
       "pageLoadTime": null,
-      "firstContentfulPaint": null,
-      "speedIndex": null,
-      "largestContentfulPaint": null,
-      "timeToFirstByte": null,
-      "dnsLookup": null,
-      "tcpConnect": null,
-      "totalRequests": null,
-      "totalTransferSize": null
+      "firstContentfulPaint": 1577,
+      "largestContentfulPaint": 5755,
+      "timeToInteractive": 7769,
+      "totalBlockingTime": 3430,
+      "speedIndex": 6966,
+      "browserPerformanceScore": 37
     },
     "error": null
   },
@@ -42,14 +38,12 @@
     "reportId": "5b3865e1d06085c65182af1616d2c63bf8c43f65",
     "metrics": {
       "pageLoadTime": null,
-      "firstContentfulPaint": null,
-      "speedIndex": null,
+      "firstContentfulPaint": 3113,
       "largestContentfulPaint": null,
-      "timeToFirstByte": null,
-      "dnsLookup": null,
-      "tcpConnect": null,
-      "totalRequests": null,
-      "totalTransferSize": null
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "browserPerformanceScore": 74
     },
     "error": null
   },
@@ -60,14 +54,12 @@
     "reportId": "4e8c48e1c208f27b54cfaa5580017d48df47f3a0",
     "metrics": {
       "pageLoadTime": null,
-      "firstContentfulPaint": null,
-      "speedIndex": null,
-      "largestContentfulPaint": null,
-      "timeToFirstByte": null,
-      "dnsLookup": null,
-      "tcpConnect": null,
-      "totalRequests": null,
-      "totalTransferSize": null
+      "firstContentfulPaint": 1807,
+      "largestContentfulPaint": 6617,
+      "timeToInteractive": 7949,
+      "totalBlockingTime": 3608,
+      "speedIndex": 10269,
+      "browserPerformanceScore": 32
     },
     "error": null
   },
@@ -78,14 +70,12 @@
     "reportId": "7ac481f8f712ea0a5b00dc962acab97d5f5d22d7",
     "metrics": {
       "pageLoadTime": null,
-      "firstContentfulPaint": null,
-      "speedIndex": null,
+      "firstContentfulPaint": 2868,
       "largestContentfulPaint": null,
-      "timeToFirstByte": null,
-      "dnsLookup": null,
-      "tcpConnect": null,
-      "totalRequests": null,
-      "totalTransferSize": null
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "browserPerformanceScore": 79
     },
     "error": null
   },
@@ -115,7 +105,7 @@
   },
   {
     "url": "https://www.pressreader.com",
-    "profile": "OS X Big Sur — Safari",
+    "profile": "OS X Big Sur \u2014 Safari",
     "source": "automate",
     "reportId": null,
     "metrics": {
@@ -131,7 +121,7 @@
   },
   {
     "url": "https://www.pressreader.com",
-    "profile": "Windows 11 — Chrome",
+    "profile": "Windows 11 \u2014 Chrome",
     "source": "automate",
     "reportId": null,
     "metrics": {
@@ -147,7 +137,7 @@
   },
   {
     "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
-    "profile": "OS X Big Sur — Safari",
+    "profile": "OS X Big Sur \u2014 Safari",
     "source": "automate",
     "reportId": null,
     "metrics": {
@@ -163,7 +153,7 @@
   },
   {
     "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
-    "profile": "Windows 11 — Chrome",
+    "profile": "Windows 11 \u2014 Chrome",
     "source": "automate",
     "reportId": null,
     "metrics": {
@@ -179,7 +169,7 @@
   },
   {
     "url": "https://www.pressreader.com/catalog",
-    "profile": "OS X Big Sur — Safari",
+    "profile": "OS X Big Sur \u2014 Safari",
     "source": "automate",
     "reportId": null,
     "metrics": {
@@ -195,7 +185,7 @@
   },
   {
     "url": "https://www.pressreader.com/catalog",
-    "profile": "Windows 11 — Chrome",
+    "profile": "Windows 11 \u2014 Chrome",
     "source": "automate",
     "reportId": null,
     "metrics": {
@@ -211,7 +201,7 @@
   },
   {
     "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
-    "profile": "OS X Big Sur — Safari",
+    "profile": "OS X Big Sur \u2014 Safari",
     "source": "automate",
     "reportId": null,
     "metrics": {
@@ -227,7 +217,7 @@
   },
   {
     "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
-    "profile": "Windows 11 — Chrome",
+    "profile": "Windows 11 \u2014 Chrome",
     "source": "automate",
     "reportId": null,
     "metrics": {
