@@ -454,8 +454,8 @@
   <section>
     <p class="section-title">Chart Notes</p>
     <div class="notes-block">
-      <p><strong>Page Load Time</strong> — Desktop only. Not captured by Speed Lab on mobile devices.</p>
-      <p><strong>iPhone 12 (iOS)</strong> — Speed Lab only reports FCP and Performance Score for iOS devices. LCP, TBT, TTI, and Speed Index are not available from the iOS testing environment and are excluded from those charts.</p>
+      <p><strong>iPhone 12 &amp; OS X Safari</strong> — Speed Lab captures FCP, Page Load Time, and Speed Index for these platforms. LCP, TBT, and TTI require Lighthouse (Chrome-only); Safari uses WebPageTest and iOS does not support Lighthouse. These profiles are excluded from LCP, TBT, and TTI charts automatically.</p>
+      <p><strong>Samsung Galaxy S10</strong> — Full Lighthouse metrics available (FCP, LCP, TBT, TTI, Speed Index). Page Load Time is not captured on Android.</p>
     </div>
   </section>
 
@@ -474,7 +474,7 @@
         </div>
         <div class="charts-row"><div class="chart-wrap"><h4>First Contentful Paint (ms)</h4><canvas id="chart_1"></canvas></div><div class="chart-wrap"><h4>Largest Contentful Paint (ms)</h4><canvas id="chart_2"></canvas></div></div>
 <div class="charts-row"><div class="chart-wrap"><h4>Total Blocking Time (ms)</h4><canvas id="chart_3"></canvas></div><div class="chart-wrap"><h4>Time to Interactive (ms)</h4><canvas id="chart_4"></canvas></div></div>
-<div class="charts-row"><div class="chart-wrap"><h4>Page Load Time (ms) — Desktop Only</h4><canvas id="chart_5"></canvas></div><div class="chart-wrap"><h4>Speed Index (ms)</h4><canvas id="chart_6"></canvas></div></div>
+<div class="charts-row"><div class="chart-wrap"><h4>Page Load Time (ms)</h4><canvas id="chart_5"></canvas></div><div class="chart-wrap"><h4>Speed Index (ms)</h4><canvas id="chart_6"></canvas></div></div>
       </section>
 
       <section class="url-section">
@@ -488,7 +488,7 @@
         </div>
         <div class="charts-row"><div class="chart-wrap"><h4>First Contentful Paint (ms)</h4><canvas id="chart_8"></canvas></div><div class="chart-wrap"><h4>Largest Contentful Paint (ms)</h4><canvas id="chart_9"></canvas></div></div>
 <div class="charts-row"><div class="chart-wrap"><h4>Total Blocking Time (ms)</h4><canvas id="chart_10"></canvas></div><div class="chart-wrap"><h4>Time to Interactive (ms)</h4><canvas id="chart_11"></canvas></div></div>
-<div class="charts-row"><div class="chart-wrap"><h4>Page Load Time (ms) — Desktop Only</h4><canvas id="chart_12"></canvas></div><div class="chart-wrap"><h4>Speed Index (ms)</h4><canvas id="chart_13"></canvas></div></div>
+<div class="charts-row"><div class="chart-wrap"><h4>Page Load Time (ms)</h4><canvas id="chart_12"></canvas></div><div class="chart-wrap"><h4>Speed Index (ms)</h4><canvas id="chart_13"></canvas></div></div>
       </section>
 
       <section class="url-section">
@@ -502,7 +502,7 @@
         </div>
         <div class="charts-row"><div class="chart-wrap"><h4>First Contentful Paint (ms)</h4><canvas id="chart_15"></canvas></div><div class="chart-wrap"><h4>Largest Contentful Paint (ms)</h4><canvas id="chart_16"></canvas></div></div>
 <div class="charts-row"><div class="chart-wrap"><h4>Total Blocking Time (ms)</h4><canvas id="chart_17"></canvas></div><div class="chart-wrap"><h4>Time to Interactive (ms)</h4><canvas id="chart_18"></canvas></div></div>
-<div class="charts-row"><div class="chart-wrap"><h4>Page Load Time (ms) — Desktop Only</h4><canvas id="chart_19"></canvas></div><div class="chart-wrap"><h4>Speed Index (ms)</h4><canvas id="chart_20"></canvas></div></div>
+<div class="charts-row"><div class="chart-wrap"><h4>Page Load Time (ms)</h4><canvas id="chart_19"></canvas></div><div class="chart-wrap"><h4>Speed Index (ms)</h4><canvas id="chart_20"></canvas></div></div>
       </section>
 
       <section class="url-section">
@@ -516,12 +516,12 @@
         </div>
         <div class="charts-row"><div class="chart-wrap"><h4>First Contentful Paint (ms)</h4><canvas id="chart_22"></canvas></div><div class="chart-wrap"><h4>Largest Contentful Paint (ms)</h4><canvas id="chart_23"></canvas></div></div>
 <div class="charts-row"><div class="chart-wrap"><h4>Total Blocking Time (ms)</h4><canvas id="chart_24"></canvas></div><div class="chart-wrap"><h4>Time to Interactive (ms)</h4><canvas id="chart_25"></canvas></div></div>
-<div class="charts-row"><div class="chart-wrap"><h4>Page Load Time (ms) — Desktop Only</h4><canvas id="chart_26"></canvas></div><div class="chart-wrap"><h4>Speed Index (ms)</h4><canvas id="chart_27"></canvas></div></div>
+<div class="charts-row"><div class="chart-wrap"><h4>Page Load Time (ms)</h4><canvas id="chart_26"></canvas></div><div class="chart-wrap"><h4>Speed Index (ms)</h4><canvas id="chart_27"></canvas></div></div>
       </section>
   </section>
 </main>
 
-<footer>Generated 2026-04-10T17:03:09.703Z &nbsp;·&nbsp; BrowserStack Speed Lab + Automate &nbsp;·&nbsp; Data in results/all-results.csv</footer>
+<footer>Generated 2026-04-10T17:12:51.786Z &nbsp;·&nbsp; BrowserStack Speed Lab + Automate &nbsp;·&nbsp; Data in results/all-results.csv</footer>
 
 <script>
 
@@ -678,7 +678,7 @@
         scales: {
           x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
           y: {
-            title: { display: true, text: 'Page Load Time (ms) — Desktop Only' },
+            title: { display: true, text: 'Page Load Time (ms)' },
             beginAtZero: false,
             
             ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
@@ -867,7 +867,7 @@
         scales: {
           x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
           y: {
-            title: { display: true, text: 'Page Load Time (ms) — Desktop Only' },
+            title: { display: true, text: 'Page Load Time (ms)' },
             beginAtZero: false,
             
             ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
@@ -1056,7 +1056,7 @@
         scales: {
           x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
           y: {
-            title: { display: true, text: 'Page Load Time (ms) — Desktop Only' },
+            title: { display: true, text: 'Page Load Time (ms)' },
             beginAtZero: false,
             
             ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }
@@ -1245,7 +1245,7 @@
         scales: {
           x: { title: { display: true, text: 'Week' }, ticks: { font: { size: 11 } } },
           y: {
-            title: { display: true, text: 'Page Load Time (ms) — Desktop Only' },
+            title: { display: true, text: 'Page Load Time (ms)' },
             beginAtZero: false,
             
             ticks: { callback: v => v.toLocaleString() + ' ms', font: { size: 11 } }

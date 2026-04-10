@@ -12,9 +12,12 @@ const RESULTS_DIR = "./results";
 export function extractMetrics(report) {
   const run = report.results?.[0]?.median_run ?? {};
   const gm  = run.general_metrics ?? {};
+  const nt  = run.navigation_timings ?? {};
 
   return {
-    pageLoadTime:            null,           // not provided by Speed Lab API
+    // page_load_time available for iPhone, Safari, and Chrome via navigation_timings;
+    // also present as general_metrics.page_load on some platforms.
+    pageLoadTime:            nt.page_load_time ?? gm.page_load ?? null,
     firstContentfulPaint:    gm.fcp         ?? null,
     largestContentfulPaint:  gm.lcp         ?? null,
     timeToInteractive:       gm.tti         ?? null,

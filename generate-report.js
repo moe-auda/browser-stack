@@ -47,7 +47,7 @@ const METRICS = [
   { key: "largestContentfulPaint",label: "Largest Contentful Paint", abbr: "LCP",  unit: "ms", good: 2500, warn: 4000 },
   { key: "totalBlockingTime",     label: "Total Blocking Time",      abbr: "TBT",  unit: "ms", good: 200,  warn: 600  },
   { key: "timeToInteractive",     label: "Time to Interactive",      abbr: "TTI",  unit: "ms", good: 3800, warn: 7300 },
-  { key: "pageLoadTime",          label: "Page Load Time",           abbr: "Load", unit: "ms", good: 2000, warn: 5000, desktopOnly: true },
+  { key: "pageLoadTime",          label: "Page Load Time",           abbr: "Load", unit: "ms", good: 2000, warn: 5000 },
   { key: "speedIndex",            label: "Speed Index",              abbr: "SI",   unit: "ms", good: 3400, warn: 5800 },
 ];
 
@@ -578,8 +578,8 @@ function generateHtml(byDate) {
   <section>
     <p class="section-title">Chart Notes</p>
     <div class="notes-block">
-      <p><strong>Page Load Time</strong> — Desktop only. Not captured by Speed Lab on mobile devices.</p>
-      <p><strong>iPhone 12 (iOS)</strong> — Speed Lab only reports FCP and Performance Score for iOS devices. LCP, TBT, TTI, and Speed Index are not available from the iOS testing environment and are excluded from those charts.</p>
+      <p><strong>iPhone 12 &amp; OS X Safari</strong> — Speed Lab captures FCP, Page Load Time, and Speed Index for these platforms. LCP, TBT, and TTI require Lighthouse (Chrome-only); Safari uses WebPageTest and iOS does not support Lighthouse. These profiles are excluded from LCP, TBT, and TTI charts automatically.</p>
+      <p><strong>Samsung Galaxy S10</strong> — Full Lighthouse metrics available (FCP, LCP, TBT, TTI, Speed Index). Page Load Time is not captured on Android.</p>
     </div>
   </section>
 
