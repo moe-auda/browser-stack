@@ -5,7 +5,7 @@
     "source": "speedlab",
     "reportId": "05c4fbd49cebfe4affd3c4a33131e73970fb8e46",
     "metrics": {
-      "pageLoadTime": null,
+      "pageLoadTime": 1667,
       "firstContentfulPaint": 1831,
       "largestContentfulPaint": null,
       "timeToInteractive": null,
@@ -21,7 +21,7 @@
     "source": "speedlab",
     "reportId": "9b1ccbc3601aa1422e967fb148f78145cd7adc35",
     "metrics": {
-      "pageLoadTime": null,
+      "pageLoadTime": 2899,
       "firstContentfulPaint": 2907,
       "largestContentfulPaint": null,
       "timeToInteractive": null,
@@ -37,7 +37,7 @@
     "source": "speedlab",
     "reportId": "1296d0a0434311bea4408d15119e1fd02718c7b8",
     "metrics": {
-      "pageLoadTime": null,
+      "pageLoadTime": 3149,
       "firstContentfulPaint": 2838,
       "largestContentfulPaint": null,
       "timeToInteractive": null,
@@ -53,7 +53,7 @@
     "source": "speedlab",
     "reportId": "b0534d925e86319f16db3c804b559935da694774",
     "metrics": {
-      "pageLoadTime": null,
+      "pageLoadTime": 3819,
       "firstContentfulPaint": 2796,
       "largestContentfulPaint": null,
       "timeToInteractive": null,
