@@ -162,11 +162,10 @@ function buildChartData(byWeek, weekKeys, weekLabels, targetUrl, metricKey, desk
     return { label: profile, data, borderColor: c.border, backgroundColor: c.background,
              borderWidth: 2, pointRadius: 4, pointHoverRadius: 6, tension: 0.3, spanGaps: true };
   });
-  // For desktop-only metrics, drop profiles that have no data at all.
-  if (desktopOnly) {
-    return { labels: weekLabels, datasets: datasets.filter((ds) => ds.data.some((v) => v != null)) };
-  }
-  return { labels: weekLabels, datasets };
+  // Drop profiles that have no data at all for this metric across all weeks.
+  // This automatically excludes iPhone from LCP/TBT/TTI/SI charts (iOS Speed Lab
+  // limitation) and mobile from desktop-only metrics like Page Load Time.
+  return { labels: weekLabels, datasets: datasets.filter((ds) => ds.data.some((v) => v != null)) };
 }
 
 // ─── Latest scores (from most-recent data per url/profile across all weeks) ──
@@ -521,6 +520,15 @@ function generateHtml(byDate) {
     .chart-full { margin-top: 0; }
     .chart-full canvas { max-height: 240px; }
 
+    /* ── Chart notes ── */
+    .notes-block {
+      background: #fff; border-radius: 14px; padding: 1.1rem 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 2.5rem;
+      font-size: 0.78rem; color: #555; line-height: 1.65;
+    }
+    .notes-block p { margin: 0.25rem 0; }
+    .notes-block strong { color: #333; }
+
     /* ── Footer ── */
     footer { text-align: center; color: #bbb; font-size: 0.75rem; padding: 1.5rem 2rem 2rem; }
 
@@ -564,6 +572,14 @@ function generateHtml(byDate) {
         </thead>
         <tbody>${legendRows}</tbody>
       </table>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-title">Chart Notes</p>
+    <div class="notes-block">
+      <p><strong>Page Load Time</strong> — Desktop only. Not captured by Speed Lab on mobile devices.</p>
+      <p><strong>iPhone 12 (iOS)</strong> — Speed Lab only reports FCP and Performance Score for iOS devices. LCP, TBT, TTI, and Speed Index are not available from the iOS testing environment and are excluded from those charts.</p>
     </div>
   </section>
 

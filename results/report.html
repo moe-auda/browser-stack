@@ -159,6 +159,15 @@
     .chart-full { margin-top: 0; }
     .chart-full canvas { max-height: 240px; }
 
+    /* ── Chart notes ── */
+    .notes-block {
+      background: #fff; border-radius: 14px; padding: 1.1rem 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 2.5rem;
+      font-size: 0.78rem; color: #555; line-height: 1.65;
+    }
+    .notes-block p { margin: 0.25rem 0; }
+    .notes-block strong { color: #333; }
+
     /* ── Footer ── */
     footer { text-align: center; color: #bbb; font-size: 0.75rem; padding: 1.5rem 2rem 2rem; }
 
@@ -443,6 +452,14 @@
   </section>
 
   <section>
+    <p class="section-title">Chart Notes</p>
+    <div class="notes-block">
+      <p><strong>Page Load Time</strong> — Desktop only. Not captured by Speed Lab on mobile devices.</p>
+      <p><strong>iPhone 12 (iOS)</strong> — Speed Lab only reports FCP and Performance Score for iOS devices. LCP, TBT, TTI, and Speed Index are not available from the iOS testing environment and are excluded from those charts.</p>
+    </div>
+  </section>
+
+  <section>
     <p class="section-title">Timeline — Week by Week</p>
     <p class="section-desc">Performance Score trend is shown first. Secondary metric trends follow. X-axis labels are calendar weeks.</p>
     
@@ -504,7 +521,7 @@
   </section>
 </main>
 
-<footer>Generated 2026-04-10T16:57:33.374Z &nbsp;·&nbsp; BrowserStack Speed Lab + Automate &nbsp;·&nbsp; Data in results/all-results.csv</footer>
+<footer>Generated 2026-04-10T17:03:09.703Z &nbsp;·&nbsp; BrowserStack Speed Lab + Automate &nbsp;·&nbsp; Data in results/all-results.csv</footer>
 
 <script>
 
@@ -564,7 +581,7 @@
 
     new Chart(document.getElementById('chart_2'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[8700,2730,2670,null,5755],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[6990,null,null,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[8700,2730,2670,null,5755],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[6990,null,null,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -591,7 +608,7 @@
 
     new Chart(document.getElementById('chart_3'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[6,5,4,null,3430],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[4,null,null,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[6,5,4,null,3430],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[4,null,null,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -618,7 +635,7 @@
 
     new Chart(document.getElementById('chart_4'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[9300,9300,7010,null,7769],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[7790,null,null,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[9300,9300,7010,null,7769],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[7790,null,null,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -672,7 +689,7 @@
 
     new Chart(document.getElementById('chart_6'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[10330,6260,7940,null,6966],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[5580,2560,2760,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[7740,null,null,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[10330,6260,7940,null,6966],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[5580,2560,2760,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[7740,null,null,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -753,7 +770,7 @@
 
     new Chart(document.getElementById('chart_9'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[8740,8710,6940,null,6617],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[8030,3560,3240,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[8740,8710,6940,null,6617],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[8030,3560,3240,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -780,7 +797,7 @@
 
     new Chart(document.getElementById('chart_10'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[5,5,4,null,3608],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[6,3,4,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[5,5,4,null,3608],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[6,3,4,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -807,7 +824,7 @@
 
     new Chart(document.getElementById('chart_11'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[10310,9650,8280,null,7949],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[12210,5860,7410,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[10310,9650,8280,null,7949],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[12210,5860,7410,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -861,7 +878,7 @@
 
     new Chart(document.getElementById('chart_13'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[16540,15260,13870,null,10269],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[6080,5580,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[13460,4260,4530,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[16540,15260,13870,null,10269],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[6080,5580,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[13460,4260,4530,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -942,7 +959,7 @@
 
     new Chart(document.getElementById('chart_16'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,8510,8260,null,7409],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,10790,8520,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[null,8510,8260,null,7409],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,10790,8520,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -969,7 +986,7 @@
 
     new Chart(document.getElementById('chart_17'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,5,6,null,4377],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,9,6,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[null,5,6,null,4377],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,9,6,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -996,7 +1013,7 @@
 
     new Chart(document.getElementById('chart_18'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,9720,10040,null,8671],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,13800,11520,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[null,9720,10040,null,8671],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,13800,11520,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -1050,7 +1067,7 @@
 
     new Chart(document.getElementById('chart_20'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,12540,13510,null,10232],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,4420,4280,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,12470,13870,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[null,12540,13510,null,10232],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,4420,4280,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,12470,13870,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -1131,7 +1148,7 @@
 
     new Chart(document.getElementById('chart_23'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,null,7760,null,6010],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,12030,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[null,null,7760,null,6010],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,12030,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -1158,7 +1175,7 @@
 
     new Chart(document.getElementById('chart_24'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,null,5,null,2618],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,9,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[null,null,5,null,2618],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,9,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -1185,7 +1202,7 @@
 
     new Chart(document.getElementById('chart_25'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,null,8140,null,6766],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,null,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,14760,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[null,null,8140,null,6766],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,14760,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
@@ -1239,7 +1256,7 @@
 
     new Chart(document.getElementById('chart_27'), {
       type: 'line',
-      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"iPhone 12","data":[null,null,null,null,null],"borderColor":"#007AFF","backgroundColor":"rgba(0,122,255,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Samsung Galaxy S10","data":[null,null,9180,null,7056],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,3930,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,14440,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
+      data: {"labels":["Week 1 (Jan 27 – Feb 2)","Week 2 (Mar 10 – Mar 16)","Week 3 (Mar 24 – Mar 30)","Week 4 (Mar 31 – Apr 6)","Week 5 (Apr 7 – Apr 13)"],"datasets":[{"label":"Samsung Galaxy S10","data":[null,null,9180,null,7056],"borderColor":"#27AE60","backgroundColor":"rgba(39,174,96,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"OS X Big Sur — Safari","data":[null,null,3930,null,null],"borderColor":"#FF9500","backgroundColor":"rgba(255,149,0,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true},{"label":"Windows 11 — Chrome","data":[null,null,14440,null,null],"borderColor":"#E74C3C","backgroundColor":"rgba(231,76,60,0.12)","borderWidth":2,"pointRadius":4,"pointHoverRadius":6,"tension":0.3,"spanGaps":true}]},
       options: {
         responsive: true,
         plugins: {
