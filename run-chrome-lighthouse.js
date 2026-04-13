@@ -83,9 +83,10 @@ export async function runChromeLighthouse({ url }) {
     }
 
     const audits = lhr.audits ?? {};
+    const metricsItems = audits["metrics"]?.details?.items?.[0] ?? {};
 
     return {
-      pageLoadTime: null, // Lighthouse does not expose nav load event time
+      pageLoadTime: metricsItems.observedLoad != null ? Math.round(metricsItems.observedLoad) : null,
       firstContentfulPaint: num(audits["first-contentful-paint"]),
       largestContentfulPaint: num(audits["largest-contentful-paint"]),
       timeToInteractive: num(audits["interactive"]),
