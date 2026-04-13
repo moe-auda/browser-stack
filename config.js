@@ -29,9 +29,8 @@ export const DESKTOP_PROFILES = [
   {
     label: "Windows 11 — Chrome",
     browser: { os: "windows", os_version: "11", browser_name: "chrome", browser_version: 109 },
-    // Speed Lab Lighthouse consistently fails on pressreader.com (service worker interference).
-    // Use BrowserStack Automate + native Performance API instead.
-    useAutomate: true,
-    automate: { os: "Windows", osVersion: "11", browser: "chrome", browserVersion: "109", label: "Windows 11 — Chrome" },
+    // Speed Lab Lighthouse consistently fails on pressreader.com (service worker interference,
+    // all 5 runs return perf=-1). Run Lighthouse directly in GitHub Actions instead.
+    useLighthouse: true,
   },
 ];

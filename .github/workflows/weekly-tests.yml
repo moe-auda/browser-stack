@@ -69,6 +69,10 @@ jobs:
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
         run: node run-tests.js --safari
 
+      - name: Ensure Chrome is installed (for Lighthouse)
+        if: github.event.schedule == '0 10 * * 1' || (github.event_name == 'workflow_dispatch' && inputs.day == 'chrome') || (github.event_name == 'workflow_dispatch' && inputs.day == 'all')
+        run: google-chrome --version 2>/dev/null || (sudo apt-get update -qq && sudo apt-get install -y google-chrome-stable)
+
       - name: Run tests — Monday (Windows 11 Chrome)
         if: github.event.schedule == '0 10 * * 1' || (github.event_name == 'workflow_dispatch' && inputs.day == 'chrome')
         env:
