@@ -115,3 +115,7 @@ date,url,profile,pageLoadTime_ms,firstContentfulPaint_ms,speedIndex_ms,largestCo
 2026-04-13,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Windows 11 — Chrome",822,983,,127,,,,
 2026-04-13,"https://www.pressreader.com/catalog","Windows 11 — Chrome",2109,2560,,510,,,,
 2026-04-13,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Windows 11 — Chrome",1869,2225,,366,,,,
+2026-04-13,"https://www.pressreader.com","Windows 11 — Chrome",,1007,1429,3325,115,1414,,
+2026-04-13,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Windows 11 — Chrome",,1027,4395,4413,40,3538,,
+2026-04-13,"https://www.pressreader.com/catalog","Windows 11 — Chrome",,975,3964,5724,80,3114,,
+2026-04-13,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Windows 11 — Chrome",,985,3708,4625,65,2160,,
