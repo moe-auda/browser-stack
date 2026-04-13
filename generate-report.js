@@ -140,7 +140,9 @@ function loadAllResults() {
   const byDate = {};
   for (const f of fs.readdirSync(RESULTS_DIR).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort()) {
     try {
-      byDate[f.replace(".json", "")] = JSON.parse(fs.readFileSync(path.join(RESULTS_DIR, f), "utf-8"));
+      const date = f.replace(".json", "");
+      // Attach the run date to each entry so groupByWeek can resolve duplicates.
+      byDate[date] = JSON.parse(fs.readFileSync(path.join(RESULTS_DIR, f), "utf-8")).map((e) => ({ ...e, _date: date }));
     } catch { /* skip malformed */ }
   }
   return byDate;
@@ -152,9 +154,13 @@ function buildChartData(byWeek, weekKeys, weekLabels, targetUrl, metricKey, desk
   const isScore = metricKey === "performanceScore";
   const datasets = PROFILES.map((profile) => {
     const data = weekKeys.map((wk) => {
-      const entry = (byWeek[wk] ?? []).find(
+      // Among all entries for this (week, url, profile), pick the most recent
+      // run that has metrics — handles weeks where a profile ran multiple times
+      // (e.g. a re-run on a different day), so the latest data always wins.
+      const candidates = (byWeek[wk] ?? []).filter(
         (e) => e.url === targetUrl && e.profile === profile && hasAnyMetric(e)
       );
+      const entry = candidates.sort((a, b) => (b._date ?? "").localeCompare(a._date ?? ""))[0] ?? null;
       if (!entry) return null;
       return isScore ? getScore(entry) : (entry.metrics[metricKey] ?? null);
     });
@@ -175,7 +181,10 @@ function buildLatestScores(byWeek, weekKeys) {
   for (const wk of weekKeys) {
     for (const entry of byWeek[wk] ?? []) {
       const key = `${entry.url}||${entry.profile}`;
-      if (!best[key] || hasAnyMetric(entry)) best[key] = entry;
+      // Keep the most recent entry that has metrics; fall back to any entry.
+      if (!best[key] || (hasAnyMetric(entry) && (entry._date ?? "") >= (best[key]._date ?? ""))) {
+        best[key] = entry;
+      }
     }
   }
 
