@@ -48,6 +48,7 @@ export async function runChromeLighthouse({ url }) {
       url,
       { port: chrome.port, output: "json", logLevel: "error" },
       {
+        extends: "lighthouse:default",
         settings: {
           formFactor: "desktop",
           screenEmulation: {
