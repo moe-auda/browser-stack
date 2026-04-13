@@ -5,12 +5,12 @@
     "source": "lighthouse",
     "reportId": null,
     "metrics": {
-      "pageLoadTime": null,
-      "firstContentfulPaint": 1007,
-      "largestContentfulPaint": 1429,
-      "timeToInteractive": 3325,
-      "totalBlockingTime": 115,
-      "speedIndex": 1414,
+      "pageLoadTime": 603,
+      "firstContentfulPaint": 1061,
+      "largestContentfulPaint": 1623,
+      "timeToInteractive": 2445,
+      "totalBlockingTime": 46,
+      "speedIndex": 1398,
       "browserPerformanceScore": 91
     },
     "error": null
@@ -21,13 +21,13 @@
     "source": "lighthouse",
     "reportId": null,
     "metrics": {
-      "pageLoadTime": null,
-      "firstContentfulPaint": 1027,
-      "largestContentfulPaint": 4395,
-      "timeToInteractive": 4413,
-      "totalBlockingTime": 40,
-      "speedIndex": 3538,
-      "browserPerformanceScore": 68
+      "pageLoadTime": 383,
+      "firstContentfulPaint": 1007,
+      "largestContentfulPaint": 2773,
+      "timeToInteractive": 2877,
+      "totalBlockingTime": 21,
+      "speedIndex": 2691,
+      "browserPerformanceScore": 77
     },
     "error": null
   },
@@ -37,13 +37,13 @@
     "source": "lighthouse",
     "reportId": null,
     "metrics": {
-      "pageLoadTime": null,
-      "firstContentfulPaint": 975,
-      "largestContentfulPaint": 3964,
-      "timeToInteractive": 5724,
-      "totalBlockingTime": 80,
-      "speedIndex": 3114,
-      "browserPerformanceScore": 47
+      "pageLoadTime": 397,
+      "firstContentfulPaint": 1040,
+      "largestContentfulPaint": 2694,
+      "timeToInteractive": 4360,
+      "totalBlockingTime": 46,
+      "speedIndex": 2839,
+      "browserPerformanceScore": 53
     },
     "error": null
   },
@@ -53,13 +53,13 @@
     "source": "lighthouse",
     "reportId": null,
     "metrics": {
-      "pageLoadTime": null,
-      "firstContentfulPaint": 985,
-      "largestContentfulPaint": 3708,
-      "timeToInteractive": 4625,
-      "totalBlockingTime": 65,
-      "speedIndex": 2160,
-      "browserPerformanceScore": 65
+      "pageLoadTime": 385,
+      "firstContentfulPaint": 1031,
+      "largestContentfulPaint": 2591,
+      "timeToInteractive": 3422,
+      "totalBlockingTime": 22,
+      "speedIndex": 2185,
+      "browserPerformanceScore": 71
     },
     "error": null
   }
