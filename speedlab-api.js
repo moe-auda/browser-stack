@@ -10,7 +10,7 @@
 
 const BASE_URL = "https://api.browserstack.com/speedlab/beta";
 const POLL_INTERVAL_MS = 15_000;  // 15 seconds between status checks
-const MAX_POLL_ATTEMPTS = 80;     // 20 minutes max wait per test (Chrome/Lighthouse can be slow)
+const MAX_POLL_ATTEMPTS = 80;     // 20 minutes max wait per test
 const RETRY_DELAY_MS = 30_000;    // wait 30s before retrying if another report is in progress
 const MAX_SUBMIT_RETRIES = 10;    // retry up to 10 times (~5 min total)
 

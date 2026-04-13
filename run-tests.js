@@ -18,6 +18,7 @@ import { fileURLToPath } from "url";
 import path from "path";
 import { URLS, MOBILE_PROFILES, DESKTOP_PROFILES } from "./config.js";
 import { submitMobileTest, waitForReport } from "./speedlab-api.js";
+import { runDesktopTest } from "./automate-desktop.js";
 import { extractMetrics, saveResults, printSummary } from "./reporter.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -44,8 +45,26 @@ if (!USERNAME || !ACCESS_KEY) {
 // ─── Speed Lab test runner (mobile + desktop) ──────────────────────────────
 
 async function runTest({ url, profile }) {
-  console.log(`  [SpeedLab]  ${profile.label} — ${url}`);
+  // Chrome uses BrowserStack Automate — Speed Lab Lighthouse fails on pressreader.com
+  // due to service worker interference (all 5 Lighthouse runs return perf=-1).
+  if (profile.useAutomate) {
+    console.log(`  [Automate]  ${profile.label} — ${url}`);
+    try {
+      const metrics = await runDesktopTest({
+        username: USERNAME,
+        accessKey: ACCESS_KEY,
+        url,
+        profile: profile.automate,
+      });
+      return { url, profile: profile.label, source: "automate", reportId: null, metrics, error: null };
+    } catch (err) {
+      console.error(`  [Failed]    ${profile.label} — ${err.message}`);
+      return { url, profile: profile.label, source: "automate", reportId: null, metrics: null, error: err.message };
+    }
+  }
 
+  // All other profiles (mobile + Safari) use Speed Lab
+  console.log(`  [SpeedLab]  ${profile.label} — ${url}`);
   try {
     const reportId = await submitMobileTest({
       username: USERNAME,
