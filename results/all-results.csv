@@ -179,3 +179,7 @@ date,url,profile,pageLoadTime_ms,firstContentfulPaint_ms,speedIndex_ms,largestCo
 2026-05-09,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Samsung Galaxy S10",,1597,6193,8060,3517,8575,e1d91e6db98dc6b2fd9ac99477122b59307f0cb4,
 2026-05-09,"https://www.pressreader.com/catalog","Samsung Galaxy S10",,1704,7184,8408,4557,10720,bb9f41ffa92c807c95073101824ecbcdabfb100d,
 2026-05-09,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Samsung Galaxy S10",,1683,6293,7184,3075,7671,4ebe28c8ea619566938eda507f1d7afba2673a21,
+2026-05-10,"https://www.pressreader.com","OS X Big Sur — Safari",1924,1739,,,,3248,1e9cfb850b4c4a77a60b9a697ef5de542d7c9b8e,
+2026-05-10,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","OS X Big Sur — Safari",2788,2676,,,,5063,fcab6b47be9926235dfb78ecfb30eca1da0121b6,
+2026-05-10,"https://www.pressreader.com/catalog","OS X Big Sur — Safari",2841,2055,,,,5900,5dabe6d3c08749085b0ea5083ae16b0a40cba407,
+2026-05-10,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","OS X Big Sur — Safari",3294,3075,,,,5285,a67c489a7e628ad8a63f8564185c500e954e2267,
