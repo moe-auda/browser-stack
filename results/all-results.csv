@@ -223,3 +223,7 @@ date,url,profile,pageLoadTime_ms,firstContentfulPaint_ms,speedIndex_ms,largestCo
 2026-05-29,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","iPhone 12",3090,3096,,,,,8436db474adb932697bf1ad3ea3ab73c5e3ba58e,
 2026-05-29,"https://www.pressreader.com/catalog","iPhone 12",2956,2963,,,,,a645b83355adbad195da3e2f5ea5d5e88419a4fb,
 2026-05-29,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","iPhone 12",3310,2874,,,,,7e98d2543ae74b96b393ccf399c7ea09e46eef76,
+2026-05-30,"https://www.pressreader.com","Samsung Galaxy S10",,1629,5978,7575,3686,7048,72749a8eff4f54ca976ffb4e3f10cc7242feda6e,
+2026-05-30,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Samsung Galaxy S10",,1633,7187,9025,4898,9907,90cb68545facfdc83d37b6b0d727f7b041b7fd2d,
+2026-05-30,"https://www.pressreader.com/catalog","Samsung Galaxy S10",,1644,7043,8262,4489,10188,8f88a2fb6c3fb21b493a71559e1029d0bdbd385b,
+2026-05-30,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Samsung Galaxy S10",,1460,5852,6897,3121,7394,3ef05ce704ceed6bbc9639f3da4f2139f262157b,
