@@ -1,0 +1,66 @@
+[
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "OS X Big Sur — Safari",
+    "source": "speedlab",
+    "reportId": "927bc34c56486f99525a776c6c840934de30ad45",
+    "metrics": {
+      "pageLoadTime": 1893,
+      "firstContentfulPaint": 1905,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": 2939,
+      "browserPerformanceScore": 70
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "OS X Big Sur — Safari",
+    "source": "speedlab",
+    "reportId": "909cc84a18592634fe6762520c056c151a13fc06",
+    "metrics": {
+      "pageLoadTime": 3024,
+      "firstContentfulPaint": 2926,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": 5014,
+      "browserPerformanceScore": 40
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "OS X Big Sur — Safari",
+    "source": "speedlab",
+    "reportId": "e787a2df7ff216fd87311cd107c80a6ccfe905b6",
+    "metrics": {
+      "pageLoadTime": 2452,
+      "firstContentfulPaint": 2561,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": 5377,
+      "browserPerformanceScore": 46
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "OS X Big Sur — Safari",
+    "source": "speedlab",
+    "reportId": "ec4cd46d31e99a1c6ea2646c12bab2ba0ab07bf2",
+    "metrics": {
+      "pageLoadTime": 1520,
+      "firstContentfulPaint": 1668,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": 3493,
+      "browserPerformanceScore": 68
+    },
+    "error": null
+  }
+]
