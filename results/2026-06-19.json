@@ -1,0 +1,66 @@
+[
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": "0df16348d85c61558d88d0e41e1b4b767ffd2ce6",
+    "metrics": {
+      "pageLoadTime": 2851,
+      "firstContentfulPaint": 1938,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "browserPerformanceScore": 95
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": "6da8ef3342641640dd446dc20051561b8da30ee2",
+    "metrics": {
+      "pageLoadTime": 2937,
+      "firstContentfulPaint": 2941,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "browserPerformanceScore": 78
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": "f02cd6468806db17b5d0e80dd422167217a5545f",
+    "metrics": {
+      "pageLoadTime": 2890,
+      "firstContentfulPaint": 2897,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "browserPerformanceScore": 79
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "iPhone 12",
+    "source": "speedlab",
+    "reportId": "465404c21abe7dfe82bb8d89db636a0a4dc47fea",
+    "metrics": {
+      "pageLoadTime": 3817,
+      "firstContentfulPaint": 2718,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null,
+      "browserPerformanceScore": 78
+    },
+    "error": null
+  }
+]
