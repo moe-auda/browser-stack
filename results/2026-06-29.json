@@ -1,0 +1,66 @@
+[
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "Windows 11 — Chrome",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 830,
+      "firstContentfulPaint": 1151,
+      "largestContentfulPaint": 2500,
+      "timeToInteractive": 2911,
+      "totalBlockingTime": 398,
+      "speedIndex": 2023,
+      "browserPerformanceScore": 63
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Windows 11 — Chrome",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 245,
+      "firstContentfulPaint": 803,
+      "largestContentfulPaint": 3256,
+      "timeToInteractive": 3278,
+      "totalBlockingTime": 115,
+      "speedIndex": 2976,
+      "browserPerformanceScore": 73
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "Windows 11 — Chrome",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 260,
+      "firstContentfulPaint": 790,
+      "largestContentfulPaint": 3609,
+      "timeToInteractive": 3839,
+      "totalBlockingTime": 70,
+      "speedIndex": 2859,
+      "browserPerformanceScore": 69
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "Windows 11 — Chrome",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 262,
+      "firstContentfulPaint": 834,
+      "largestContentfulPaint": 3512,
+      "timeToInteractive": 3558,
+      "totalBlockingTime": 37,
+      "speedIndex": 2457,
+      "browserPerformanceScore": 75
+    },
+    "error": null
+  }
+]
