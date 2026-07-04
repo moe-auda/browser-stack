@@ -25,12 +25,22 @@ const DESKTOP_THROTTLING = {
   uploadThroughputKbps: 0,
 };
 
+const MOBILE_THROTTLING = {
+  rttMs: 150,
+  throughputKbps: 1_638.4,
+  cpuSlowdownMultiplier: 4,
+  requestLatencyMs: 0,
+  downloadThroughputKbps: 0,
+  uploadThroughputKbps: 0,
+};
+
 function num(audit) {
   const v = audit?.numericValue;
   return v != null ? Math.round(v) : null;
 }
 
-export async function runChromeLighthouse({ url }) {
+export async function runChromeLighthouse({ url, formFactor = "desktop" }) {
+  const mobile = formFactor === "mobile";
   const chrome = await chromeLauncher.launch({
     chromeFlags: [
       "--headless",
@@ -50,16 +60,16 @@ export async function runChromeLighthouse({ url }) {
       {
         extends: "lighthouse:default",
         settings: {
-          formFactor: "desktop",
+          formFactor,
           screenEmulation: {
-            mobile: false,
-            width: 1350,
-            height: 940,
-            deviceScaleFactor: 1,
+            mobile,
+            width: mobile ? 360 : 1350,
+            height: mobile ? 760 : 940,
+            deviceScaleFactor: mobile ? 3 : 1,
             disabled: false,
           },
           throttlingMethod: "simulate",
-          throttling: DESKTOP_THROTTLING,
+          throttling: mobile ? MOBILE_THROTTLING : DESKTOP_THROTTLING,
           onlyCategories: ["performance"],
           maxWaitForLoad: 45_000,
           maxWaitForFcp: 15_000,

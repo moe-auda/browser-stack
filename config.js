@@ -16,6 +16,10 @@ export const MOBILE_PROFILES = [
   {
     label: "Samsung Galaxy S10",
     device: { os: "android", os_version: 9, device: "samsung galaxy s10" },
+    // BrowserStack's Galaxy S10 Speed Lab lane currently fails before producing metrics.
+    // Use the same self-hosted Lighthouse path as Chrome with Galaxy-sized emulation.
+    useLighthouse: true,
+    lighthouseFormFactor: "mobile",
   },
 ];
 

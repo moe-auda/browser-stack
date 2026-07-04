@@ -36,10 +36,10 @@ const USERNAME   = process.env.BROWSERSTACK_USERNAME;
 const ACCESS_KEY = process.env.BROWSERSTACK_ACCESS_KEY;
 const REGION     = process.env.SPEEDLAB_REGION  ?? "usw";
 const MOBILE_NETWORK = process.env.MOBILE_NETWORK ?? "4g_normal";
-const configuredSpeedLabAttempts = Number.parseInt(process.env.SPEEDLAB_ATTEMPTS ?? "2", 10);
-const SPEEDLAB_ATTEMPTS = Number.isFinite(configuredSpeedLabAttempts)
-  ? Math.max(1, configuredSpeedLabAttempts)
-  : 2;
+const configuredLighthouseAttempts = Number.parseInt(process.env.LIGHTHOUSE_ATTEMPTS ?? "3", 10);
+const LIGHTHOUSE_ATTEMPTS = Number.isFinite(configuredLighthouseAttempts)
+  ? Math.max(1, configuredLighthouseAttempts)
+  : 3;
 
 if (!USERNAME || !ACCESS_KEY) {
   console.error("Error: BROWSERSTACK_USERNAME and BROWSERSTACK_ACCESS_KEY must be set in .env");
@@ -53,43 +53,46 @@ async function runTest({ url, profile }) {
   // pressreader.com due to service worker interference (all 5 runs return perf=-1).
   if (profile.useLighthouse) {
     console.log(`  [Lighthouse] ${profile.label} — ${url}`);
-    try {
-      const metrics = await runChromeLighthouse({ url });
-      return { url, profile: profile.label, source: "lighthouse", reportId: null, metrics, error: null };
-    } catch (err) {
-      console.error(`  [Failed]    ${profile.label} — ${err.message}`);
-      return { url, profile: profile.label, source: "lighthouse", reportId: null, metrics: null, error: err.message };
+    for (let attempt = 1; attempt <= LIGHTHOUSE_ATTEMPTS; attempt++) {
+      try {
+        const metrics = await runChromeLighthouse({
+          url,
+          formFactor: profile.lighthouseFormFactor ?? "desktop",
+        });
+        return { url, profile: profile.label, source: "lighthouse", reportId: null, metrics, error: null };
+      } catch (err) {
+        if (attempt < LIGHTHOUSE_ATTEMPTS) {
+          console.warn(`  [Retry]     ${profile.label} attempt ${attempt}/${LIGHTHOUSE_ATTEMPTS} — ${err.message}`);
+          await new Promise((resolve) => setTimeout(resolve, 10_000));
+          continue;
+        }
+
+        console.error(`  [Failed]    ${profile.label} — ${err.message}`);
+        return { url, profile: profile.label, source: "lighthouse", reportId: null, metrics: null, error: err.message };
+      }
     }
   }
 
   // All other profiles (mobile + Safari) use Speed Lab
   console.log(`  [SpeedLab]  ${profile.label} — ${url}`);
-  let lastReportId = null;
-  for (let attempt = 1; attempt <= SPEEDLAB_ATTEMPTS; attempt++) {
-    try {
-      lastReportId = await submitMobileTest({
-        username: USERNAME,
-        accessKey: ACCESS_KEY,
-        url,
-        deviceProfile: profile,
-        network: MOBILE_NETWORK,
-        region: REGION,
-      });
+  try {
+    const reportId = await submitMobileTest({
+      username: USERNAME,
+      accessKey: ACCESS_KEY,
+      url,
+      deviceProfile: profile,
+      network: MOBILE_NETWORK,
+      region: REGION,
+    });
 
-      console.log(`  [Waiting]   ${profile.label} report=${lastReportId}`);
-      const report = await waitForReport({ username: USERNAME, accessKey: ACCESS_KEY, reportId: lastReportId });
-      const metrics = extractMetrics(report);
+    console.log(`  [Waiting]   ${profile.label} report=${reportId}`);
+    const report = await waitForReport({ username: USERNAME, accessKey: ACCESS_KEY, reportId });
+    const metrics = extractMetrics(report);
 
-      return { url, profile: profile.label, source: "speedlab", reportId: lastReportId, metrics, error: null };
-    } catch (err) {
-      if (attempt < SPEEDLAB_ATTEMPTS) {
-        console.warn(`  [Retry]     ${profile.label} attempt ${attempt}/${SPEEDLAB_ATTEMPTS} — ${err.message}`);
-        continue;
-      }
-
-      console.error(`  [Failed]    ${profile.label} — ${err.message}`);
-      return { url, profile: profile.label, source: "speedlab", reportId: lastReportId, metrics: null, error: err.message };
-    }
+    return { url, profile: profile.label, source: "speedlab", reportId, metrics, error: null };
+  } catch (err) {
+    console.error(`  [Failed]    ${profile.label} — ${err.message}`);
+    return { url, profile: profile.label, source: "speedlab", reportId: null, metrics: null, error: err.message };
   }
 }
 
