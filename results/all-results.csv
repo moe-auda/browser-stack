@@ -307,3 +307,7 @@ date,url,profile,pageLoadTime_ms,firstContentfulPaint_ms,speedIndex_ms,largestCo
 2026-07-04,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Samsung Galaxy S10",470,3459,18848,18894,1778,9653,,
 2026-07-04,"https://www.pressreader.com/catalog","Samsung Galaxy S10",1303,3582,18869,19670,1721,9430,,
 2026-07-04,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Samsung Galaxy S10",273,3593,15053,16205,1270,6319,,
+2026-07-06,"https://www.pressreader.com","Windows 11 — Chrome",829,1182,2515,3685,436,2158,,
+2026-07-06,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Windows 11 — Chrome",294,847,4669,4701,129,3677,,
+2026-07-06,"https://www.pressreader.com/catalog","Windows 11 — Chrome",315,907,5201,5298,80,3468,,
+2026-07-06,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Windows 11 — Chrome",289,829,4203,4420,40,2789,,
