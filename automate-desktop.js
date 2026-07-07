@@ -21,11 +21,16 @@ export async function runDesktopTest({ username, accessKey, url, profile }) {
 
   try {
     const metrics = await collectMetrics({ username, accessKey, sessionId, url });
+    if (metrics?._error) {
+      throw new Error(`Metric collection failed: ${metrics._error}`);
+    }
     await markSessionPassed({ username, accessKey, sessionId });
     return metrics;
   } catch (err) {
     await markSessionFailed({ username, accessKey, sessionId, reason: err.message });
     throw err;
+  } finally {
+    await endSession({ username, accessKey, sessionId });
   }
 }
 
@@ -206,6 +211,13 @@ async function markSessionFailed({ username, accessKey, sessionId, reason }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ status: "failed", reason }),
+  }).catch(() => {});
+}
+
+async function endSession({ username, accessKey, sessionId }) {
+  await fetch(`${AUTOMATE_URL}/session/${sessionId}`, {
+    method: "DELETE",
+    headers: { Authorization: basicAuth(username, accessKey) },
   }).catch(() => {});
 }
 

@@ -588,7 +588,7 @@ function generateHtml(byDate) {
     <p class="section-title">Chart Notes</p>
     <div class="notes-block">
       <p><strong>iPhone 12 (iOS)</strong> — Speed Lab captures FCP and Page Load Time only. Speed Index, LCP, TBT, and TTI are not available on iOS. These are excluded from those charts automatically.</p>
-      <p><strong>OS X Big Sur — Safari</strong> — Speed Lab uses WebPageTest for Safari, capturing FCP, Page Load Time, and Speed Index. Lighthouse CWV metrics (LCP, TBT, TTI) are Chrome-only and excluded from those charts automatically.</p>
+      <p><strong>OS X Big Sur — Safari</strong> — BrowserStack Automate captures browser NavigationTiming metrics from a real Safari session. Lighthouse CWV metrics such as LCP and TBT are Chrome-only and excluded from those charts automatically.</p>
       <p><strong>Samsung Galaxy S10</strong> — Full Lighthouse metrics (FCP, LCP, TBT, TTI, Speed Index). Page Load Time is not captured on Android.</p>
     </div>
   </section>

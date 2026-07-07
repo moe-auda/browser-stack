@@ -29,6 +29,11 @@ export const DESKTOP_PROFILES = [
   {
     label: "OS X Big Sur — Safari",
     browser: { os: "os x", os_version: "big sur", browser_name: "safari", browser_version: 14 },
+    // BrowserStack Speed Lab's Safari lane can fail before producing metrics.
+    // Keep Safari coverage by collecting NavigationTiming metrics in a real
+    // BrowserStack Automate Safari session instead.
+    useAutomate: true,
+    automate: { os: "OS X", osVersion: "Big Sur", browser: "Safari", browserVersion: "14.0" },
   },
   {
     label: "Windows 11 — Chrome",
