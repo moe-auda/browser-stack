@@ -129,16 +129,30 @@ function calculateScore(metrics) {
   return totalW === 0 ? null : Math.round(sum / totalW);
 }
 
+function reportMetricValue(entry, key) {
+  if (entry?.profile === "OS X Big Sur — Safari" && key === "speedIndex") {
+    return null;
+  }
+
+  return entry?.metrics?.[key] ?? null;
+}
+
+function reportMetrics(entry) {
+  if (!entry?.metrics) return null;
+  return Object.fromEntries(METRICS.map(({ key }) => [key, reportMetricValue(entry, key)]));
+}
+
 // Returns true only if the entry has at least one non-null metric value.
 function hasAnyMetric(entry) {
-  return entry.metrics != null && Object.values(entry.metrics).some((v) => v != null);
+  const metrics = reportMetrics(entry);
+  return metrics != null && Object.values(metrics).some((v) => v != null);
 }
 
 // Use BrowserStack's own score for Speed Lab runs; fall back to calculated for desktop.
 function getScore(entry) {
   if (!entry?.metrics) return null;
   if (entry.metrics.browserPerformanceScore != null) return entry.metrics.browserPerformanceScore;
-  return calculateScore(entry.metrics);
+  return calculateScore(reportMetrics(entry));
 }
 
 function scoreLabel(score) {
@@ -176,7 +190,7 @@ function buildChartData(byWeek, weekKeys, weekLabels, targetUrl, metricKey, desk
       );
       const entry = candidates.sort((a, b) => (b._date ?? "").localeCompare(a._date ?? ""))[0] ?? null;
       if (!entry) return null;
-      return isScore ? getScore(entry) : (entry.metrics[metricKey] ?? null);
+      return isScore ? getScore(entry) : reportMetricValue(entry, metricKey);
     });
     const c = PROFILE_COLORS[profile];
     return { label: profile, data, borderColor: c.border, backgroundColor: c.background,
@@ -205,11 +219,10 @@ function buildLatestScores(byWeek, weekKeys) {
   return URLS.map((url) => {
     const profiles = PROFILES.map((profile) => {
       const entry = best[`${url}||${profile}`];
-      const m = entry?.metrics ?? null;
       const score = getScore(entry);
       return {
         profile, score,
-        metrics: METRICS.reduce((acc, { key }) => { acc[key] = m?.[key] ?? null; return acc; }, {}),
+        metrics: METRICS.reduce((acc, { key }) => { acc[key] = reportMetricValue(entry, key); return acc; }, {}),
         error: entry?.error ?? null,
       };
     });
@@ -602,7 +615,7 @@ function generateHtml(byDate) {
     <p class="section-title">Chart Notes</p>
     <div class="notes-block">
       <p><strong>iPhone 12 (iOS)</strong> — Speed Lab captures FCP and Page Load Time only. Speed Index, LCP, TBT, and TTI are not available on iOS. These are excluded from those charts automatically.</p>
-      <p><strong>OS X Big Sur — Safari</strong> — BrowserStack Automate captures browser NavigationTiming metrics from a real Safari session. Lighthouse CWV metrics such as LCP and TBT are Chrome-only and excluded from those charts automatically.</p>
+      <p><strong>OS X Big Sur — Safari</strong> — BrowserStack Automate captures FCP and Page Load Time from a real Safari session. Lighthouse-only metrics and Speed Index are excluded from Safari charts.</p>
       <p><strong>Samsung Galaxy S10</strong> — Full Lighthouse metrics (FCP, LCP, TBT, TTI, Speed Index). Page Load Time is not captured on Android.</p>
     </div>
   </section>
