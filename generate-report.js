@@ -77,6 +77,14 @@ function meetingWeekKey(dateStr) {
   return d.toISOString().slice(0, 10); // "YYYY-MM-DD" of that Tuesday
 }
 
+function isTuesdaySingleProfileRerun(dateStr, entries) {
+  const d = new Date(dateStr + "T12:00:00Z");
+  if (d.getUTCDay() !== 2) return false;
+
+  const profiles = new Set((entries ?? []).map((entry) => entry.profile).filter(Boolean));
+  return profiles.size === 1;
+}
+
 function weekDateRange(weekKey) {
   // weekKey is the Tuesday; the reporting week runs Tue → Mon (6 days later)
   const tuesday = new Date(weekKey + "T12:00:00Z");
@@ -89,7 +97,13 @@ function weekDateRange(weekKey) {
 function groupByWeek(byDate) {
   const byWeek = {};
   for (const [date, entries] of Object.entries(byDate)) {
-    const key = meetingWeekKey(date);
+    let key = meetingWeekKey(date);
+    if (isTuesdaySingleProfileRerun(date, entries)) {
+      const previousTuesday = new Date(key + "T12:00:00Z");
+      previousTuesday.setUTCDate(previousTuesday.getUTCDate() - 7);
+      key = previousTuesday.toISOString().slice(0, 10);
+    }
+
     if (!byWeek[key]) byWeek[key] = [];
     byWeek[key].push(...(entries ?? []));
   }
