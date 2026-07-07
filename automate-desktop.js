@@ -116,14 +116,6 @@ async function collectMetrics({ username, accessKey, sessionId, url }) {
 
       var fcp = paint['first-contentful-paint'] ? Math.round(paint['first-contentful-paint']) : null;
 
-      // TTI approximation via domInteractive (not Lighthouse TTI, but a reasonable proxy)
-      var tti = null;
-      if (nav2 && nav2.domInteractive > 0) {
-        tti = Math.round(nav2.domInteractive - nav2.fetchStart);
-      } else if (nav1 && nav1.domInteractive > 0) {
-        tti = Math.round(nav1.domInteractive - nav1.navigationStart);
-      }
-
       // TBT via Long Tasks API (Chrome only; Safari returns null)
       var tbt = null;
       try {
@@ -140,7 +132,7 @@ async function collectMetrics({ username, accessKey, sessionId, url }) {
         pageLoadTime: pageLoad,
         firstContentfulPaint: fcp,
         largestContentfulPaint: lcp ? Math.round(lcp) : null,
-        timeToInteractive: tti,
+        timeToInteractive: null,
         totalBlockingTime: tbt,
         speedIndex: null,
       };

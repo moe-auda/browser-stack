@@ -7,7 +7,7 @@
     "metrics": {
       "firstContentfulPaint": 2024,
       "largestContentfulPaint": null,
-      "timeToInteractive": 474,
+      "timeToInteractive": null,
       "pageLoadTime": 1252,
       "totalBlockingTime": null,
       "speedIndex": null
@@ -22,7 +22,7 @@
     "metrics": {
       "firstContentfulPaint": 1867,
       "largestContentfulPaint": null,
-      "timeToInteractive": 304,
+      "timeToInteractive": null,
       "pageLoadTime": 1077,
       "totalBlockingTime": null,
       "speedIndex": null
@@ -37,7 +37,7 @@
     "metrics": {
       "firstContentfulPaint": 2475,
       "largestContentfulPaint": null,
-      "timeToInteractive": 241,
+      "timeToInteractive": null,
       "pageLoadTime": 1278,
       "totalBlockingTime": null,
       "speedIndex": null
@@ -52,7 +52,7 @@
     "metrics": {
       "firstContentfulPaint": 2933,
       "largestContentfulPaint": null,
-      "timeToInteractive": 741,
+      "timeToInteractive": null,
       "pageLoadTime": 1658,
       "totalBlockingTime": null,
       "speedIndex": null
