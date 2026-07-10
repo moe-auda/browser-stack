@@ -315,3 +315,7 @@ date,url,profile,pageLoadTime_ms,firstContentfulPaint_ms,speedIndex_ms,largestCo
 2026-07-07,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","OS X Big Sur — Safari",1077,1867,,,,,,
 2026-07-07,"https://www.pressreader.com/catalog","OS X Big Sur — Safari",1278,2475,,,,,,
 2026-07-07,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","OS X Big Sur — Safari",1658,2933,,,,,,
+2026-07-10,"https://www.pressreader.com","iPhone 12",1944,2037,,,,,ee934ed2c7ad9f945297d7774a7ca0d4393553e9,
+2026-07-10,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","iPhone 12",1357,2206,,,,,4e649c74fccf98a804aef9b5067391257a13d7bc,
+2026-07-10,"https://www.pressreader.com/catalog","iPhone 12",3066,3073,,,,,bfc254398edac514fdddf15776261b65556bff64,
+2026-07-10,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","iPhone 12",3892,2766,,,,,00b9127f8014f286a8fc52c4cada6dad5a155abe,
