@@ -351,3 +351,7 @@ date,url,profile,pageLoadTime_ms,firstContentfulPaint_ms,speedIndex_ms,largestCo
 2026-07-24,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","iPhone 12",2830,2836,,,,,d1aac4c174f7cc50cbf87fedc930355e0ed43711,
 2026-07-24,"https://www.pressreader.com/catalog","iPhone 12",2956,3009,,,,,675e8c991b047dff8cf1b141516829477ff3d61a,
 2026-07-24,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","iPhone 12",5946,2818,,,,,f124f7186e09f17562faf7bb5437163bf728febb,
+2026-07-25,"https://www.pressreader.com","Samsung Galaxy S10",381,3597,9754,15820,1355,4194,,
+2026-07-25,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Samsung Galaxy S10",360,3379,18201,20126,1217,10206,,
+2026-07-25,"https://www.pressreader.com/catalog","Samsung Galaxy S10",346,3562,20363,20471,1704,9978,,
+2026-07-25,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Samsung Galaxy S10",310,3573,14516,15838,861,6204,,
