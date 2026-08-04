@@ -32,11 +32,12 @@ const URL_LABELS = {
   "https://www.pressreader.com/newspapers/n/the-wall-street-journal": "Publication Page Template",
 };
 
-const PROFILES = ["iPhone 12", "Samsung Galaxy S10", "OS X Big Sur — Safari", "Windows 11 — Chrome"];
+const PROFILES = ["iPhone 12", "Samsung Galaxy S10", "Samsung Galaxy S24", "OS X Big Sur — Safari", "Windows 11 — Chrome"];
 
 const PROFILE_COLORS = {
   "iPhone 12":                 { border: "#007AFF", background: "rgba(0,122,255,0.12)" },
   "Samsung Galaxy S10":        { border: "#27AE60", background: "rgba(39,174,96,0.12)" },
+  "Samsung Galaxy S24":        { border: "#8E44AD", background: "rgba(142,68,173,0.12)" },
   "OS X Big Sur — Safari":     { border: "#FF9500", background: "rgba(255,149,0,0.12)" },
   "Windows 11 — Chrome":       { border: "#E74C3C", background: "rgba(231,76,60,0.12)" },
 };
@@ -617,6 +618,7 @@ function generateHtml(byDate) {
       <p><strong>iPhone 12 (iOS)</strong> — Speed Lab captures FCP and Page Load Time only. Speed Index, LCP, TBT, and TTI are not available on iOS. These are excluded from those charts automatically.</p>
       <p><strong>OS X Big Sur — Safari</strong> — BrowserStack Automate captures FCP and Page Load Time from a real Safari session. Lighthouse-only metrics and Speed Index are excluded from Safari charts.</p>
       <p><strong>Samsung Galaxy S10</strong> — Full Lighthouse metrics (FCP, LCP, TBT, TTI, Speed Index). Page Load Time is not captured on Android.</p>
+      <p><strong>Samsung Galaxy S24</strong> — Full Lighthouse metrics using Galaxy S24 screen emulation (FCP, LCP, TBT, TTI, Speed Index).</p>
     </div>
   </section>
 

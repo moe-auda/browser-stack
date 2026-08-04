@@ -4,9 +4,11 @@
  * All profiles (mobile + desktop) → Speed Lab API
  *
  * Usage:
- *   node run-tests.js              — all 16 tests
+ *   node run-tests.js              — all 20 tests
  *   node run-tests.js --iphone     — iPhone 12 only        (4 tests) — Friday
  *   node run-tests.js --galaxy     — Galaxy S10 only       (4 tests) — Saturday
+ *   node run-tests.js --galaxy-s24 — Galaxy S24 only       (4 tests)
+ *   node run-tests.js --android    — both Android phones   (8 tests)
  *   node run-tests.js --safari     — OS X Safari only      (4 tests) — Sunday
  *   node run-tests.js --chrome     — Windows Chrome only   (4 tests) — Monday
  *   node run-tests.js --desktop    — Safari + Chrome       (8 tests) — manual override
@@ -24,14 +26,16 @@ import { extractMetrics, saveResults, printSummary } from "./reporter.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Parse --iphone / --galaxy / --desktop flags
+// Parse profile-selection flags
 const args = process.argv.slice(2);
 const FLAG_IPHONE  = args.includes("--iphone");
 const FLAG_GALAXY  = args.includes("--galaxy");
+const FLAG_GALAXY_S24 = args.includes("--galaxy-s24");
+const FLAG_ANDROID = args.includes("--android");
 const FLAG_SAFARI  = args.includes("--safari");
 const FLAG_CHROME  = args.includes("--chrome");
 const FLAG_DESKTOP = args.includes("--desktop");
-const FLAG_ALL     = !FLAG_IPHONE && !FLAG_GALAXY && !FLAG_SAFARI && !FLAG_CHROME && !FLAG_DESKTOP;
+const FLAG_ALL     = !FLAG_IPHONE && !FLAG_GALAXY && !FLAG_GALAXY_S24 && !FLAG_ANDROID && !FLAG_SAFARI && !FLAG_CHROME && !FLAG_DESKTOP;
 
 const USERNAME   = process.env.BROWSERSTACK_USERNAME;
 const ACCESS_KEY = process.env.BROWSERSTACK_ACCESS_KEY;
@@ -75,6 +79,7 @@ async function runTest({ url, profile }) {
         const metrics = await runChromeLighthouse({
           url,
           formFactor: profile.lighthouseFormFactor ?? "desktop",
+          screenEmulation: profile.lighthouseScreenEmulation,
         });
         return { url, profile: profile.label, source: "lighthouse", reportId: null, metrics, error: null };
       } catch (err) {
@@ -134,6 +139,8 @@ async function main() {
     if (FLAG_ALL)    return true;
     if (FLAG_IPHONE) return p.label === "iPhone 12";
     if (FLAG_GALAXY) return p.label === "Samsung Galaxy S10";
+    if (FLAG_GALAXY_S24) return p.label === "Samsung Galaxy S24";
+    if (FLAG_ANDROID) return p.device?.os === "android";
     return false;
   });
 
@@ -149,7 +156,7 @@ async function main() {
     allProfiles.map((profile) => () => runTest({ url, profile }))
   );
 
-  const mode = FLAG_IPHONE ? "--iphone" : FLAG_GALAXY ? "--galaxy" : FLAG_SAFARI ? "--safari" : FLAG_CHROME ? "--chrome" : FLAG_DESKTOP ? "--desktop" : "full";
+  const mode = FLAG_IPHONE ? "--iphone" : FLAG_GALAXY ? "--galaxy" : FLAG_GALAXY_S24 ? "--galaxy-s24" : FLAG_ANDROID ? "--android" : FLAG_SAFARI ? "--safari" : FLAG_CHROME ? "--chrome" : FLAG_DESKTOP ? "--desktop" : "full";
 
   console.log(`\nBrowserStack Weekly Performance Run`);
   console.log(`Date:    ${runDate}  Mode: ${mode}`);

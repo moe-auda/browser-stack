@@ -20,6 +20,15 @@ export const MOBILE_PROFILES = [
     // Use the same self-hosted Lighthouse path as Chrome with Galaxy-sized emulation.
     useLighthouse: true,
     lighthouseFormFactor: "mobile",
+    lighthouseScreenEmulation: { width: 360, height: 760, deviceScaleFactor: 3 },
+  },
+  {
+    label: "Samsung Galaxy S24",
+    device: { os: "android", os_version: 14, device: "samsung galaxy s24" },
+    // Collect a second Android baseline using the S24's CSS viewport and pixel ratio.
+    useLighthouse: true,
+    lighthouseFormFactor: "mobile",
+    lighthouseScreenEmulation: { width: 360, height: 780, deviceScaleFactor: 3 },
   },
 ];
 

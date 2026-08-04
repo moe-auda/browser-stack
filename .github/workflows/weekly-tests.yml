@@ -1,12 +1,12 @@
 name: Weekly BrowserStack Tests
 
-# Runs across 4 days (4 tests/day) to stay within Speed Lab API quota.
+# Runs across 4 days while keeping Speed Lab API usage to 4 tests/day.
 # All results are ready before the Tuesday 11 AM PT weekly meeting.
 #
-# Fri  10:00 UTC — iPhone 12          (4 Speed Lab tests)
-# Sat  10:00 UTC — Samsung Galaxy S10 (4 Speed Lab tests)
-# Sun  10:00 UTC — OS X Safari        (4 Speed Lab tests)
-# Mon  10:00 UTC — Windows Chrome     (4 Speed Lab tests)
+# Fri  10:00 UTC — iPhone 12                    (4 Speed Lab tests)
+# Sat  10:00 UTC — Galaxy S10 + Galaxy S24      (8 local Lighthouse tests)
+# Sun  10:00 UTC — OS X Safari                  (4 Automate tests)
+# Mon  10:00 UTC — Windows Chrome               (4 local Lighthouse tests)
 #
 # After each run, results are committed and GitHub Pages updates automatically.
 
@@ -26,6 +26,8 @@ on:
         options:
           - iphone
           - galaxy
+          - galaxy-s24
+          - android
           - safari
           - chrome
           - all
@@ -48,7 +50,7 @@ jobs:
         run: npm install
 
       - name: Ensure Chrome is installed (for Lighthouse)
-        if: github.event.schedule == '0 10 * * 6' || github.event.schedule == '0 10 * * 1' || (github.event_name == 'workflow_dispatch' && inputs.day == 'galaxy') || (github.event_name == 'workflow_dispatch' && inputs.day == 'chrome') || (github.event_name == 'workflow_dispatch' && inputs.day == 'all')
+        if: github.event.schedule == '0 10 * * 6' || github.event.schedule == '0 10 * * 1' || (github.event_name == 'workflow_dispatch' && (inputs.day == 'galaxy' || inputs.day == 'galaxy-s24' || inputs.day == 'android' || inputs.day == 'chrome' || inputs.day == 'all'))
         run: google-chrome --version 2>/dev/null || (sudo apt-get update -qq && sudo apt-get install -y google-chrome-stable)
 
       - name: Run tests — Friday (iPhone 12)
@@ -58,12 +60,27 @@ jobs:
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
         run: node run-tests.js --iphone
 
-      - name: Run tests — Saturday (Samsung Galaxy S10)
-        if: github.event.schedule == '0 10 * * 6' || (github.event_name == 'workflow_dispatch' && inputs.day == 'galaxy')
+      - name: Run tests — Saturday (Galaxy S10 + Galaxy S24)
+        if: github.event.schedule == '0 10 * * 6' || (github.event_name == 'workflow_dispatch' && inputs.day == 'android')
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        # Both Android profiles use local Lighthouse, so this consumes no Speed Lab quota.
+        run: node run-tests.js --android
+
+      - name: Run tests — Samsung Galaxy S10 (manual)
+        if: github.event_name == 'workflow_dispatch' && inputs.day == 'galaxy'
         env:
           BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
           BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
         run: node run-tests.js --galaxy
+
+      - name: Run tests — Samsung Galaxy S24 (manual)
+        if: github.event_name == 'workflow_dispatch' && inputs.day == 'galaxy-s24'
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        run: node run-tests.js --galaxy-s24
 
       - name: Run tests — Sunday (OS X Big Sur Safari)
         if: github.event.schedule == '0 10 * * 0' || (github.event_name == 'workflow_dispatch' && inputs.day == 'safari')

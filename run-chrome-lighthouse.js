@@ -39,8 +39,15 @@ function num(audit) {
   return v != null ? Math.round(v) : null;
 }
 
-export async function runChromeLighthouse({ url, formFactor = "desktop" }) {
+export async function runChromeLighthouse({ url, formFactor = "desktop", screenEmulation }) {
   const mobile = formFactor === "mobile";
+  const defaultScreenEmulation = {
+    mobile,
+    width: mobile ? 360 : 1350,
+    height: mobile ? 760 : 940,
+    deviceScaleFactor: mobile ? 3 : 1,
+    disabled: false,
+  };
   const chrome = await chromeLauncher.launch({
     chromeFlags: [
       "--headless",
@@ -62,11 +69,8 @@ export async function runChromeLighthouse({ url, formFactor = "desktop" }) {
         settings: {
           formFactor,
           screenEmulation: {
-            mobile,
-            width: mobile ? 360 : 1350,
-            height: mobile ? 760 : 940,
-            deviceScaleFactor: mobile ? 3 : 1,
-            disabled: false,
+            ...defaultScreenEmulation,
+            ...screenEmulation,
           },
           throttlingMethod: "simulate",
           throttling: mobile ? MOBILE_THROTTLING : DESKTOP_THROTTLING,
