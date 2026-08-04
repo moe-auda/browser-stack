@@ -1,0 +1,66 @@
+[
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "Samsung Galaxy S24",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 1125,
+      "firstContentfulPaint": 5267,
+      "largestContentfulPaint": 9690,
+      "timeToInteractive": 17028,
+      "totalBlockingTime": 3835,
+      "speedIndex": 6630,
+      "browserPerformanceScore": 30
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Samsung Galaxy S24",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 365,
+      "firstContentfulPaint": 3540,
+      "largestContentfulPaint": 19725,
+      "timeToInteractive": 19741,
+      "totalBlockingTime": 1905,
+      "speedIndex": 8609,
+      "browserPerformanceScore": 32
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "Samsung Galaxy S24",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 356,
+      "firstContentfulPaint": 3746,
+      "largestContentfulPaint": 19974,
+      "timeToInteractive": 20786,
+      "totalBlockingTime": 1667,
+      "speedIndex": 8902,
+      "browserPerformanceScore": 19
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "Samsung Galaxy S24",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 352,
+      "firstContentfulPaint": 3576,
+      "largestContentfulPaint": 11890,
+      "timeToInteractive": 16195,
+      "totalBlockingTime": 1407,
+      "speedIndex": 5505,
+      "browserPerformanceScore": 38
+    },
+    "error": null
+  }
+]
