@@ -1,0 +1,130 @@
+[
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "Samsung Galaxy S10",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 400,
+      "firstContentfulPaint": 2608,
+      "largestContentfulPaint": 9334,
+      "timeToInteractive": 15953,
+      "totalBlockingTime": 1873,
+      "speedIndex": 4269,
+      "browserPerformanceScore": 42
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "Samsung Galaxy S24",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 275,
+      "firstContentfulPaint": 2696,
+      "largestContentfulPaint": 9492,
+      "timeToInteractive": 16242,
+      "totalBlockingTime": 1918,
+      "speedIndex": 3902,
+      "browserPerformanceScore": 42
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Samsung Galaxy S10",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 229,
+      "firstContentfulPaint": 2684,
+      "largestContentfulPaint": 19164,
+      "timeToInteractive": 19221,
+      "totalBlockingTime": 1907,
+      "speedIndex": 9886,
+      "browserPerformanceScore": 34
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Samsung Galaxy S24",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 246,
+      "firstContentfulPaint": 2706,
+      "largestContentfulPaint": 19086,
+      "timeToInteractive": 19112,
+      "totalBlockingTime": 2069,
+      "speedIndex": 9741,
+      "browserPerformanceScore": 34
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "Samsung Galaxy S10",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 245,
+      "firstContentfulPaint": 2718,
+      "largestContentfulPaint": 19834,
+      "timeToInteractive": 19938,
+      "totalBlockingTime": 2064,
+      "speedIndex": 9138,
+      "browserPerformanceScore": 22
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "Samsung Galaxy S24",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 292,
+      "firstContentfulPaint": 2723,
+      "largestContentfulPaint": 20489,
+      "timeToInteractive": 20554,
+      "totalBlockingTime": 2180,
+      "speedIndex": 9690,
+      "browserPerformanceScore": 21
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "Samsung Galaxy S10",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 229,
+      "firstContentfulPaint": 2684,
+      "largestContentfulPaint": 14667,
+      "timeToInteractive": 17786,
+      "totalBlockingTime": 1358,
+      "speedIndex": 7861,
+      "browserPerformanceScore": 38
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "Samsung Galaxy S24",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 257,
+      "firstContentfulPaint": 2552,
+      "largestContentfulPaint": 16070,
+      "timeToInteractive": 16785,
+      "totalBlockingTime": 1307,
+      "speedIndex": 10580,
+      "browserPerformanceScore": 38
+    },
+    "error": null
+  }
+]
