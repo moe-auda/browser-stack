@@ -1,0 +1,62 @@
+[
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "OS X Big Sur — Safari",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "firstContentfulPaint": 996,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "pageLoadTime": 954,
+      "totalBlockingTime": null,
+      "speedIndex": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "OS X Big Sur — Safari",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "firstContentfulPaint": 1495,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "pageLoadTime": 3048,
+      "totalBlockingTime": null,
+      "speedIndex": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "OS X Big Sur — Safari",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "firstContentfulPaint": 1178,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "pageLoadTime": 3490,
+      "totalBlockingTime": null,
+      "speedIndex": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "OS X Big Sur — Safari",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "firstContentfulPaint": 1050,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "pageLoadTime": 1508,
+      "totalBlockingTime": null,
+      "speedIndex": null
+    },
+    "error": null
+  }
+]
