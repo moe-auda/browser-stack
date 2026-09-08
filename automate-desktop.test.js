@@ -26,7 +26,8 @@ for (const scenario of ["iphone", "desktop", "navigation failure", "missing metr
     if (scenario === "navigation failure") await assert.rejects(run, /navigation failed/);
     else if (scenario === "missing metrics") await assert.rejects(run, /valid page load timing/);
     else assert.equal((await run).pageLoadTime, 123);
-    const options = calls[0].body.desiredCapabilities["bstack:options"];
+    assert.equal(calls[0].body.desiredCapabilities, undefined);
+    const options = calls[0].body.capabilities.alwaysMatch["bstack:options"];
     if (scenario === "desktop") assert.equal(options.os, "OS X");
     else {
       assert.equal(options.deviceName, "iPhone 12");
