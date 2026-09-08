@@ -12,6 +12,10 @@ export const MOBILE_PROFILES = [
   {
     label: "iPhone 12",
     device: { os: "ios", os_version: 14, device: "iphone 12" },
+    // Speed Lab currently fails before producing iPhone reports. Keep real-device
+    // Safari coverage through Automate; unsupported timing metrics remain null.
+    useAutomate: true,
+    automate: { deviceName: "iPhone 12", osVersion: "14", browser: "Safari", realMobile: true },
   },
   {
     label: "Samsung Galaxy S10",

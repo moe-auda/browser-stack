@@ -1,5 +1,5 @@
 /**
- * BrowserStack Automate — Desktop performance testing
+ * BrowserStack Automate — real desktop and mobile browser performance testing
  *
  * Speed Lab API Beta does not support desktop browser testing.
  * This module uses BrowserStack Automate (WebDriver) to open each URL
@@ -20,9 +20,14 @@ export async function runDesktopTest({ username, accessKey, url, profile }) {
   const sessionId = await startSession({ username, accessKey, url, profile });
 
   try {
+    await executeCommand({ username, accessKey, sessionId, path: "url", body: { url } });
+    await waitForLoad({ username, accessKey, sessionId });
     const metrics = await collectMetrics({ username, accessKey, sessionId, url });
     if (metrics?._error) {
       throw new Error(`Metric collection failed: ${metrics._error}`);
+    }
+    if (!Number.isFinite(metrics?.pageLoadTime) || metrics.pageLoadTime <= 0) {
+      throw new Error("Browser did not provide a valid page load timing");
     }
     await markSessionPassed({ username, accessKey, sessionId });
     return metrics;
@@ -37,7 +42,9 @@ export async function runDesktopTest({ username, accessKey, url, profile }) {
 async function startSession({ username, accessKey, url, profile }) {
   const capabilities = {
     "bstack:options": {
-      os: profile.os,
+      ...(profile.deviceName
+        ? { deviceName: profile.deviceName, realMobile: profile.realMobile ?? true }
+        : { os: profile.os }),
       osVersion: profile.osVersion,
       sessionName: `Speed Lab weekly — ${profile.label}`,
       buildName: `Speed Lab ${new Date().toISOString().slice(0, 10)}`,
@@ -54,7 +61,7 @@ async function startSession({ username, accessKey, url, profile }) {
       Authorization: basicAuth(username, accessKey),
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ desiredCapabilities: capabilities }),
+    body: JSON.stringify({ capabilities: { alwaysMatch: capabilities } }),
   });
 
   if (!response.ok) {
@@ -68,16 +75,6 @@ async function startSession({ username, accessKey, url, profile }) {
   if (!sessionId) {
     throw new Error(`No sessionId in response: ${JSON.stringify(data)}`);
   }
-
-  // Navigate to the URL
-  await executeCommand({
-    username, accessKey, sessionId,
-    path: "url",
-    body: { url },
-  });
-
-  // Wait for page load event
-  await waitForLoad({ username, accessKey, sessionId });
 
   return sessionId;
 }
