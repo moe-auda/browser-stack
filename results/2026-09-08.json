@@ -5,7 +5,85 @@
     "source": "automate",
     "reportId": null,
     "metrics": {
-      "pageLoadTime": 807,
+      "pageLoadTime": 1405,
+      "firstContentfulPaint": null,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "Samsung Galaxy S10",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 526,
+      "firstContentfulPaint": 3699,
+      "largestContentfulPaint": 9800,
+      "timeToInteractive": 16633,
+      "totalBlockingTime": 2940,
+      "speedIndex": 5970,
+      "browserPerformanceScore": 34
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "Samsung Galaxy S24",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 315,
+      "firstContentfulPaint": 3487,
+      "largestContentfulPaint": 9443,
+      "timeToInteractive": 14882,
+      "totalBlockingTime": 1594,
+      "speedIndex": 3873,
+      "browserPerformanceScore": 40
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "OS X Big Sur — Safari",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "firstContentfulPaint": 1356,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "pageLoadTime": 4142,
+      "totalBlockingTime": null,
+      "speedIndex": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "Windows 11 — Chrome",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 322,
+      "firstContentfulPaint": 864,
+      "largestContentfulPaint": 2375,
+      "timeToInteractive": 3762,
+      "totalBlockingTime": 105,
+      "speedIndex": 1425,
+      "browserPerformanceScore": 84
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "iPhone 12",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 996,
       "firstContentfulPaint": null,
       "largestContentfulPaint": null,
       "timeToInteractive": null,
@@ -16,11 +94,74 @@
   },
   {
     "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Samsung Galaxy S10",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 318,
+      "firstContentfulPaint": 3302,
+      "largestContentfulPaint": 18500,
+      "timeToInteractive": 18845,
+      "totalBlockingTime": 1967,
+      "speedIndex": 9407,
+      "browserPerformanceScore": 33
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Samsung Galaxy S24",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 348,
+      "firstContentfulPaint": 3494,
+      "largestContentfulPaint": 18693,
+      "timeToInteractive": 18790,
+      "totalBlockingTime": 2028,
+      "speedIndex": 9348,
+      "browserPerformanceScore": 32
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "OS X Big Sur — Safari",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "firstContentfulPaint": 1563,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "pageLoadTime": 6123,
+      "totalBlockingTime": null,
+      "speedIndex": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "Windows 11 — Chrome",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 415,
+      "firstContentfulPaint": 868,
+      "largestContentfulPaint": 4668,
+      "timeToInteractive": 4692,
+      "totalBlockingTime": 106,
+      "speedIndex": 3543,
+      "browserPerformanceScore": 67
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
     "profile": "iPhone 12",
     "source": "automate",
     "reportId": null,
     "metrics": {
-      "pageLoadTime": 955,
+      "pageLoadTime": 1132,
       "firstContentfulPaint": null,
       "largestContentfulPaint": null,
       "timeToInteractive": null,
@@ -31,11 +172,74 @@
   },
   {
     "url": "https://www.pressreader.com/catalog",
+    "profile": "Samsung Galaxy S10",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 310,
+      "firstContentfulPaint": 2741,
+      "largestContentfulPaint": 20863,
+      "timeToInteractive": 20979,
+      "totalBlockingTime": 1635,
+      "speedIndex": 9710,
+      "browserPerformanceScore": 23
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "Samsung Galaxy S24",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 315,
+      "firstContentfulPaint": 2740,
+      "largestContentfulPaint": 20719,
+      "timeToInteractive": 20799,
+      "totalBlockingTime": 2006,
+      "speedIndex": 9618,
+      "browserPerformanceScore": 21
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "OS X Big Sur — Safari",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "firstContentfulPaint": 1043,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "pageLoadTime": 1596,
+      "totalBlockingTime": null,
+      "speedIndex": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "Windows 11 — Chrome",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 311,
+      "firstContentfulPaint": 716,
+      "largestContentfulPaint": 3636,
+      "timeToInteractive": 4802,
+      "totalBlockingTime": 84,
+      "speedIndex": 2442,
+      "browserPerformanceScore": 74
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
     "profile": "iPhone 12",
     "source": "automate",
     "reportId": null,
     "metrics": {
-      "pageLoadTime": 992,
+      "pageLoadTime": 1103,
       "firstContentfulPaint": null,
       "largestContentfulPaint": null,
       "timeToInteractive": null,
@@ -46,16 +250,64 @@
   },
   {
     "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
-    "profile": "iPhone 12",
+    "profile": "Samsung Galaxy S10",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 308,
+      "firstContentfulPaint": 2805,
+      "largestContentfulPaint": 15431,
+      "timeToInteractive": 17599,
+      "totalBlockingTime": 1123,
+      "speedIndex": 8179,
+      "browserPerformanceScore": 40
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "Samsung Galaxy S24",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 331,
+      "firstContentfulPaint": 2722,
+      "largestContentfulPaint": 14410,
+      "timeToInteractive": 17633,
+      "totalBlockingTime": 1219,
+      "speedIndex": 6355,
+      "browserPerformanceScore": 41
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "OS X Big Sur — Safari",
     "source": "automate",
     "reportId": null,
     "metrics": {
-      "pageLoadTime": 782,
-      "firstContentfulPaint": null,
+      "firstContentfulPaint": 1777,
       "largestContentfulPaint": null,
       "timeToInteractive": null,
+      "pageLoadTime": 1993,
       "totalBlockingTime": null,
       "speedIndex": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "Windows 11 — Chrome",
+    "source": "lighthouse",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 361,
+      "firstContentfulPaint": 794,
+      "largestContentfulPaint": 4045,
+      "timeToInteractive": 4582,
+      "totalBlockingTime": 68,
+      "speedIndex": 2616,
+      "browserPerformanceScore": 72
     },
     "error": null
   }
