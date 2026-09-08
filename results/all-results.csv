@@ -475,3 +475,7 @@ date,url,profile,pageLoadTime_ms,firstContentfulPaint_ms,speedIndex_ms,largestCo
 2026-09-07,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Windows 11 — Chrome",288,834,4483,4514,96,4128,,
 2026-09-07,"https://www.pressreader.com/catalog","Windows 11 — Chrome",293,711,5014,5080,103,2767,,
 2026-09-07,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Windows 11 — Chrome",337,822,2741,4240,120,2290,,
+2026-09-08,"https://www.pressreader.com","iPhone 12",807,,,,,,,
+2026-09-08,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","iPhone 12",955,,,,,,,
+2026-09-08,"https://www.pressreader.com/catalog","iPhone 12",992,,,,,,,
+2026-09-08,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","iPhone 12",782,,,,,,,
