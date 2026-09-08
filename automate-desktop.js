@@ -61,7 +61,7 @@ async function startSession({ username, accessKey, url, profile }) {
       Authorization: basicAuth(username, accessKey),
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ desiredCapabilities: capabilities }),
+    body: JSON.stringify({ capabilities: { alwaysMatch: capabilities } }),
   });
 
   if (!response.ok) {
