@@ -1,0 +1,62 @@
+[
+  {
+    "url": "https://www.pressreader.com",
+    "profile": "iPhone 12",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 1219,
+      "firstContentfulPaint": null,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251",
+    "profile": "iPhone 12",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 1051,
+      "firstContentfulPaint": null,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/catalog",
+    "profile": "iPhone 12",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 1100,
+      "firstContentfulPaint": null,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null
+    },
+    "error": null
+  },
+  {
+    "url": "https://www.pressreader.com/newspapers/n/the-wall-street-journal",
+    "profile": "iPhone 12",
+    "source": "automate",
+    "reportId": null,
+    "metrics": {
+      "pageLoadTime": 1206,
+      "firstContentfulPaint": null,
+      "largestContentfulPaint": null,
+      "timeToInteractive": null,
+      "totalBlockingTime": null,
+      "speedIndex": null
+    },
+    "error": null
+  }
+]
