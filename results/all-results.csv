@@ -511,3 +511,7 @@ date,url,profile,pageLoadTime_ms,firstContentfulPaint_ms,speedIndex_ms,largestCo
 2026-09-12,"https://www.pressreader.com/catalog","Samsung Galaxy S24",261,2678,19336,19432,1892,9276,,
 2026-09-12,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Samsung Galaxy S10",252,2532,14406,17598,1416,7050,,
 2026-09-12,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Samsung Galaxy S24",256,2513,14432,17584,1308,7607,,
+2026-09-13,"https://www.pressreader.com","OS X Big Sur — Safari",4128,2654,,,,,,
+2026-09-13,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","OS X Big Sur — Safari",6368,1383,,,,,,
+2026-09-13,"https://www.pressreader.com/catalog","OS X Big Sur — Safari",3414,1791,,,,,,
+2026-09-13,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","OS X Big Sur — Safari",12502,8291,,,,,,
