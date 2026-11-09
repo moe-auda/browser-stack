@@ -675,3 +675,7 @@ date,url,profile,pageLoadTime_ms,firstContentfulPaint_ms,speedIndex_ms,largestCo
 2026-11-08,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","OS X Big Sur — Safari",4426,1930,,,,,,
 2026-11-08,"https://www.pressreader.com/catalog","OS X Big Sur — Safari",3293,2801,,,,,,
 2026-11-08,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","OS X Big Sur — Safari",2856,2593,,,,,,
+2026-11-09,"https://www.pressreader.com","Windows 11 — Chrome",561,900,2734,2898,186,1732,,
+2026-11-09,"https://www.pressreader.com/usa/usa-today-us-edition/20241113/281535116518251","Windows 11 — Chrome",259,666,2953,3079,159,2352,,
+2026-11-09,"https://www.pressreader.com/catalog","Windows 11 — Chrome",264,651,3467,3504,111,2180,,
+2026-11-09,"https://www.pressreader.com/newspapers/n/the-wall-street-journal","Windows 11 — Chrome",254,656,2643,3301,51,1981,,
